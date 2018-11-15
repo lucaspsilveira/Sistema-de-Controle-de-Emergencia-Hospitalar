@@ -11,6 +11,8 @@ public class Paciente {
 		this.cpf = cpf;
 		this.anoNascimento = anoNascimento;
 	}
+	public Paciente() {
+	}
 	public String getNome() {
 		return nome;
 	}
