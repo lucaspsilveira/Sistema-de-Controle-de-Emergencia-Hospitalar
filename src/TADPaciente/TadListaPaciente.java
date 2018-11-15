@@ -6,10 +6,10 @@ public class TadListaPaciente {
 	private NodoPacienteLista primeiro;
 	private NodoPacienteLista ultimo;
 
-	public TadListaPaciente(){
-        this.primeiro = null;
-        this.ultimo = null;        
-    }
+	public TadListaPaciente() {
+		this.primeiro = null;
+		this.ultimo = null;
+	}
 
 	public void removePosicao(int posicao) {
 		NodoPacienteLista remover = retornaNodoPaciente(posicao);
@@ -74,8 +74,8 @@ public class TadListaPaciente {
 
 					// forma 2
 					/*
-					 * NodoPaciente antes = aux.anterior; NodoPaciente depois = aux.proximo; antes.proximo = depois;
-					 * depois.anterior = antes;
+					 * NodoPaciente antes = aux.anterior; NodoPaciente depois = aux.proximo;
+					 * antes.proximo = depois; depois.anterior = antes;
 					 */
 					break;
 				}
@@ -90,6 +90,24 @@ public class TadListaPaciente {
 		} // fecha o while
 	}
 
+	public Paciente retornaNodoPaciente(String dado) {
+		NodoPacienteLista aux = primeiro;
+		while (aux!=null) {
+			if (aux.dado.getCpf().equalsIgnoreCase(dado)) {
+				return aux.dado;
+			}
+		// fecha o if do caso onde encontrou o dado
+			// verifica se chegou ao final, senão chegou, passa
+			// para o próximo
+		if (aux == ultimo) {
+			break;
+		} else {
+			aux = aux.proximo;
+		}
+	} // fecha o while
+		return null;
+	}
+
 	public void imprimir2() {
 		NodoPacienteLista aux = primeiro;
 		while (true) {
@@ -100,6 +118,7 @@ public class TadListaPaciente {
 			aux = aux.proximo;
 		}
 	}
+
 	public void imprimirTrasPraFrente() {
 		NodoPacienteLista aux = ultimo;
 		while (true) {
@@ -137,6 +156,7 @@ public class TadListaPaciente {
 			ultimo = novoNodoPaciente;
 		}
 	}
+
 	public void adicionarNoComeco(Paciente dado) {
 		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
 		if (primeiro == null) {
@@ -149,6 +169,7 @@ public class TadListaPaciente {
 			primeiro = novoNodoPaciente;
 		}
 	}
+
 	public void adicionarNaPosicao(Paciente dado, int posicao) {
 		NodoPacienteLista NodoPacienteNaPosicao = retornaNodoPaciente(posicao);
 		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
@@ -171,7 +192,7 @@ public class TadListaPaciente {
 				NodoPacienteNaPosicao.anterior.proximo = novoNodoPaciente;
 				NodoPacienteNaPosicao.anterior = novoNodoPaciente;
 			}
-			
+
 		}
 	}
 }
