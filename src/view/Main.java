@@ -33,7 +33,13 @@ public class Main {
 					listaPacientes.adicionarNoComeco(paciente);
 					break;
 				case "2":
-
+					System.out.println("Digite o CPF do paciente que desejas pesquisar: (pontuação irá ser desconsiderada) ");
+					Paciente pacienteEncontrado = listaPacientes.retornaNodoPaciente(bf.readLine().replaceAll("[^0-9]", ""));
+					if (pacienteEncontrado == null)
+						System.out.println("Paciente não Encontrado");
+					else
+						pacienteEncontrado.imprimePaciente();
+					
 					break;
 				case "3":
 					break;
@@ -57,7 +63,7 @@ public class Main {
 				}
 			} while (!sair);
 		} catch (Exception ex) {
-
+			ex.printStackTrace();
 		}
 		System.out.println("Hasta la vista mi amor!");
 	}
