@@ -2,9 +2,14 @@ package view;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.LineNumberInputStream;
+
+import TADPaciente.TadListaPaciente;
+import model.Paciente;
 
 public class Main {
 	public static void main(String[] args) {
+		TadListaPaciente listaPacientes = new TadListaPaciente();
 		try {
 			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 			boolean sair = false;
@@ -18,7 +23,14 @@ public class Main {
 				String res = bf.readLine();
 				switch (res.toLowerCase()) {
 				case "1":
-
+					Paciente paciente = new Paciente();
+					System.out.println("Digite o nome do paciente:");
+					paciente.setNome(bf.readLine());
+					System.out.println("Digite o CPF do paciente sem pontuação (pontuação irá ser desconsiderada):");
+					paciente.setCpf(bf.readLine().replaceAll("[^0-9]", ""));
+					System.out.println("Digite o ano de nascimento: ");
+					paciente.setAnoNascimento(Integer.parseInt(bf.readLine().replaceAll("[^0-9]", "")));
+					listaPacientes.adicionarNoComeco(paciente);
 					break;
 				case "2":
 
@@ -32,6 +44,10 @@ public class Main {
 				case "6":
 					break;
 				case "7":
+					break;
+				case "debug":
+					System.out.println("Lista de Pacientes");
+					listaPacientes.imprimir();
 					break;
 				case "sair":
 					sair = true;
