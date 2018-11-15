@@ -114,10 +114,15 @@ public class TadListaPaciente {
 	public void imprimir() {
 		NodoPacienteLista aux = primeiro;
 		while (aux != ultimo) {
-			System.out.println(aux.dado);
+			System.out.println(aux.dado.getNome());
+			System.out.println(aux.dado.getCpf());
+			System.out.println(aux.dado.getAnoNascimento());
 			aux = aux.proximo;
 		}
-		System.out.println(ultimo.dado);
+
+		System.out.println(ultimo.dado.getNome());
+		System.out.println(ultimo.dado.getCpf());
+		System.out.println(ultimo.dado.getAnoNascimento());
 	}
 
 	public void adicionarNoFinal(Paciente dado) {
