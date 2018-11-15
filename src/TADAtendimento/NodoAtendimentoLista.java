@@ -2,12 +2,12 @@ package TADAtendimento;
 
 import model.Atendimento;
 
-public class NodoAtendimento {
+public class NodoAtendimentoLista {
     protected Atendimento dado;
-    protected NodoAtendimento proximo;
-    protected NodoAtendimento anterior;    
+    protected NodoAtendimentoLista proximo;
+    protected NodoAtendimentoLista anterior;    
     
-    public NodoAtendimento(Atendimento dado){
+    public NodoAtendimentoLista(Atendimento dado){
         this.dado = dado;
         this.anterior = null;
         this.proximo = null;
