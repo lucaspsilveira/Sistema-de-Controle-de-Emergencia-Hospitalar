@@ -3,8 +3,8 @@ package TADPaciente;
 import model.Paciente;
 
 public class TadListaPaciente {
-	private NodoPaciente primeiro;
-	private NodoPaciente ultimo;
+	private NodoPacienteLista primeiro;
+	private NodoPacienteLista ultimo;
 
 	public TadListaPaciente(){
         this.primeiro = null;
@@ -12,7 +12,7 @@ public class TadListaPaciente {
     }
 
 	public void removePosicao(int posicao) {
-		NodoPaciente remover = retornaNodoPaciente(posicao);
+		NodoPacienteLista remover = retornaNodoPaciente(posicao);
 		if (remover == primeiro) {
 			primeiro.proximo.anterior = null;
 			primeiro = primeiro.proximo;
@@ -25,8 +25,8 @@ public class TadListaPaciente {
 		}
 	}
 
-	public NodoPaciente retornaNodoPaciente(int posicao) {
-		NodoPaciente aux = primeiro;
+	public NodoPacienteLista retornaNodoPaciente(int posicao) {
+		NodoPacienteLista aux = primeiro;
 		for (int i = 0; i < posicao; i++) {
 			if (aux != null) {
 				aux = aux.proximo;
@@ -40,7 +40,7 @@ public class TadListaPaciente {
 	// buscar o elemento da lista que se encontra
 	// em uma determinada posição;
 	public Paciente retornaDado(int posicao) {
-		NodoPaciente aux = primeiro;
+		NodoPacienteLista aux = primeiro;
 		for (int i = 0; i < posicao; i++) {
 			if (aux != null) {
 				aux = aux.proximo;
@@ -56,7 +56,7 @@ public class TadListaPaciente {
 	}
 
 	public void removerPorOcorrencia(String dado) {
-		NodoPaciente aux = primeiro;
+		NodoPacienteLista aux = primeiro;
 		while (true) {
 			if (aux.dado.getCpf().equalsIgnoreCase(dado)) {
 				if (aux == primeiro) {
@@ -91,7 +91,7 @@ public class TadListaPaciente {
 	}
 
 	public void imprimir2() {
-		NodoPaciente aux = primeiro;
+		NodoPacienteLista aux = primeiro;
 		while (true) {
 			System.out.println(aux.dado);
 			if (aux == ultimo) {
@@ -101,7 +101,7 @@ public class TadListaPaciente {
 		}
 	}
 	public void imprimirTrasPraFrente() {
-		NodoPaciente aux = ultimo;
+		NodoPacienteLista aux = ultimo;
 		while (true) {
 			System.out.println(aux.dado);
 			if (aux == primeiro) {
@@ -112,7 +112,7 @@ public class TadListaPaciente {
 	}
 
 	public void imprimir() {
-		NodoPaciente aux = primeiro;
+		NodoPacienteLista aux = primeiro;
 		while (aux != ultimo) {
 			System.out.println(aux.dado);
 			aux = aux.proximo;
@@ -121,7 +121,7 @@ public class TadListaPaciente {
 	}
 
 	public void adicionarNoFinal(Paciente dado) {
-		NodoPaciente novoNodoPaciente = new NodoPaciente(dado);
+		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
 		if (primeiro == null) {
 			// lista está vazia
 			primeiro = novoNodoPaciente;
@@ -133,7 +133,7 @@ public class TadListaPaciente {
 		}
 	}
 	public void adicionarNoComeco(Paciente dado) {
-		NodoPaciente novoNodoPaciente = new NodoPaciente(dado);
+		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
 		if (primeiro == null) {
 			// lista está vazia
 			primeiro = novoNodoPaciente;
@@ -145,8 +145,8 @@ public class TadListaPaciente {
 		}
 	}
 	public void adicionarNaPosicao(Paciente dado, int posicao) {
-		NodoPaciente NodoPacienteNaPosicao = retornaNodoPaciente(posicao);
-		NodoPaciente novoNodoPaciente = new NodoPaciente(dado);
+		NodoPacienteLista NodoPacienteNaPosicao = retornaNodoPaciente(posicao);
+		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
 		if (primeiro == null) {
 			// lista está vazia
 			primeiro = novoNodoPaciente;
