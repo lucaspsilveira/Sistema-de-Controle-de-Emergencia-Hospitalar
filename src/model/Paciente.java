@@ -31,6 +31,11 @@ public class Paciente {
 	public void setAnoNascimento(int anoNascimento) {
 		this.anoNascimento = anoNascimento;
 	}
+	public void imprimePaciente() {
+		System.out.println("Nome: "+ this.getNome());
+		System.out.println("CPF: "+ this.getCpf());
+		System.out.println("Ano de nascimento: "+ this.getAnoNascimento());
+	}
 	
 	
 }
