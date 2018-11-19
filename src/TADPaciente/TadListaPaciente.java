@@ -38,7 +38,7 @@ public class TadListaPaciente {
 	}
 
 	// buscar o elemento da lista que se encontra
-	// em uma determinada posição;
+	// em uma determinada posiï¿½ï¿½o;
 	public Paciente retornaDado(int posicao) {
 		NodoPacienteLista aux = primeiro;
 		for (int i = 0; i < posicao; i++) {
@@ -80,8 +80,8 @@ public class TadListaPaciente {
 					break;
 				}
 			} // fecha o if do caso onde encontrou o dado
-				// verifica se chegou ao final, senão chegou, passa
-				// para o próximo
+				// verifica se chegou ao final, senï¿½o chegou, passa
+				// para o prï¿½ximo
 			if (aux == ultimo) {
 				break;
 			} else {
@@ -97,8 +97,8 @@ public class TadListaPaciente {
 				return aux.dado;
 			}
 		// fecha o if do caso onde encontrou o dado
-			// verifica se chegou ao final, senão chegou, passa
-			// para o próximo
+			// verifica se chegou ao final, senï¿½o chegou, passa
+			// para o prï¿½ximo
 		if (aux == ultimo) {
 			break;
 		} else {
@@ -132,22 +132,27 @@ public class TadListaPaciente {
 
 	public void imprimir() {
 		NodoPacienteLista aux = primeiro;
-		while (aux != ultimo) {
-			System.out.println(aux.dado.getNome());
-			System.out.println(aux.dado.getCpf());
-			System.out.println(aux.dado.getAnoNascimento());
-			aux = aux.proximo;
-		}
+		if (aux != null) {
+			while (aux != ultimo) {
+				System.out.println(aux.dado.getNome());
+				System.out.println(aux.dado.getCpf());
+				System.out.println(aux.dado.getAnoNascimento());
+				aux = aux.proximo;
+			}
 
-		System.out.println(ultimo.dado.getNome());
-		System.out.println(ultimo.dado.getCpf());
-		System.out.println(ultimo.dado.getAnoNascimento());
+			System.out.println(ultimo.dado.getNome());
+			System.out.println(ultimo.dado.getCpf());
+			System.out.println(ultimo.dado.getAnoNascimento());
+		} else {
+			System.out.println("Lista Vazia!");
+		}
+		
 	}
 
 	public void adicionarNoFinal(Paciente dado) {
 		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
 		if (primeiro == null) {
-			// lista está vazia
+			// lista estï¿½ vazia
 			primeiro = novoNodoPaciente;
 			ultimo = novoNodoPaciente;
 		} else {
@@ -160,7 +165,7 @@ public class TadListaPaciente {
 	public void adicionarNoComeco(Paciente dado) {
 		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
 		if (primeiro == null) {
-			// lista está vazia
+			// lista estï¿½ vazia
 			primeiro = novoNodoPaciente;
 			ultimo = novoNodoPaciente;
 		} else {
@@ -174,7 +179,7 @@ public class TadListaPaciente {
 		NodoPacienteLista NodoPacienteNaPosicao = retornaNodoPaciente(posicao);
 		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
 		if (primeiro == null) {
-			// lista está vazia
+			// lista estï¿½ vazia
 			primeiro = novoNodoPaciente;
 			ultimo = novoNodoPaciente;
 		} else {
