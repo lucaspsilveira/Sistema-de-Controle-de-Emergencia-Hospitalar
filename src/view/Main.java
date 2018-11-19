@@ -42,6 +42,7 @@ public class Main {
 					
 					break;
 				case "3":
+					System.out.println("Olá mundo!");
 					break;
 				case "4":
 					break;
