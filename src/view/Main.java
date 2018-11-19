@@ -42,12 +42,6 @@ public class Main {
 					
 					break;
 				case "3":
-<<<<<<< HEAD
-					System.out.println("Olï¿½ mundo!");
-					System.out.println("oi");
-=======
-					System.out.println("Olá mundo!");
->>>>>>> parent of 1a32ce5... erro por gosto teste
 					break;
 				case "4":
 					break;
