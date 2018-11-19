@@ -22,6 +22,8 @@ public class Atendimento {
 		this.prioridade = prioridade;
 		this.parecer = parecer;
 	}
+	public Atendimento() {
+	}
 	public Paciente getPessoa() {
 		return pessoa;
 	}

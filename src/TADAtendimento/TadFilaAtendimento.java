@@ -25,11 +25,13 @@ public class TadFilaAtendimento {
     
     public void imprimir(){
         if (isEmpty()) {
-            System.out.println("Lista Vazia");
+            System.out.println("Fila Vazia");
         }
         NodoAtendimentoFila no = inicio;
         while (no != null){
-            System.out.println(no.getDado());
+            System.out.println("Paciente: " + no.getDado().getPessoa().getNome());
+            System.out.println("Prioridade: " + no.getDado().getPrioridade());
+            System.out.println("Data/hora chegada: " + no.getDado().getHoraChegada().getTime());
             no = no.getApos();
         }
     }
