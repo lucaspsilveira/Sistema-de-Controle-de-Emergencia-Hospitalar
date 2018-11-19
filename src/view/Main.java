@@ -54,6 +54,9 @@ public class Main {
 					System.out.println("Paciente "+ pacienteEncontrado.getNome()+ " adicionado na fila!");
 					break;
 				case "4":
+					
+					Atendimento at = tela.realizaTriagem(filaAtendimentos.dequeue());
+					System.out.println("Vai pra fila de prioridade: "+ at.getPrioridade());
 					break;
 				case "5":
 					break;
