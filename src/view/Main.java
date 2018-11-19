@@ -14,11 +14,11 @@ public class Main {
 			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 			boolean sair = false;
 			do {
-				System.out.println("\n========= Sistema de Controle de Emerg�ncia Hospitalar ==========");
-				System.out.println("Escolha uma das op��es, digite: " + "\n 1 - Cadastrar novo Paciente "
+				System.out.println("\n========= Sistema de Controle de Emergência Hospitalar ==========");
+				System.out.println("Escolha uma das opções, digite: " + "\n 1 - Cadastrar novo Paciente "
 						+ "\n 2 - Pesquisar um Paciente " + "\n 3 - Iniciar Atendimento de um paciente "
 						+ "\n 4 - Chamar Paciente para Triagem  " + "\n 5 - Chamar Paciente para Consulta  "
-						+ "\n 6 - Realizar libera��o do Paciente  " + "\n 7 - Relat�rios Adminsitrativos "
+						+ "\n 6 - Realizar liberação do Paciente  " + "\n 7 - Relatórios Adminsitrativos "
 						+ "\n 'Sair' - para Sair \n");
 				String res = bf.readLine();
 				switch (res.toLowerCase()) {
@@ -26,14 +26,14 @@ public class Main {
 					Paciente paciente = new Paciente();
 					System.out.println("Digite o nome do paciente:");
 					paciente.setNome(bf.readLine());
-					System.out.println("Digite o CPF do paciente sem pontua��o (pontua��o ir� ser desconsiderada):");
+					System.out.println("Digite o CPF do paciente sem pontuação (pontuação irá ser desconsiderada):");
 					paciente.setCpf(bf.readLine().replaceAll("[^0-9]", ""));
 					System.out.println("Digite o ano de nascimento: ");
 					paciente.setAnoNascimento(Integer.parseInt(bf.readLine().replaceAll("[^0-9]", "")));
 					listaPacientes.adicionarNoComeco(paciente);
 					break;
 				case "2":
-					System.out.println("Digite o CPF do paciente que desejas pesquisar: (pontua��o ir� ser desconsiderada) ");
+					System.out.println("Digite o CPF do paciente que desejas pesquisar: (pontuação irá ser desconsiderada) ");
 					Paciente pacienteEncontrado = listaPacientes.retornaNodoPaciente(bf.readLine().replaceAll("[^0-9]", ""));
 					if (pacienteEncontrado == null)
 						System.out.println("Paciente n�o Encontrado");
@@ -59,7 +59,7 @@ public class Main {
 					sair = true;
 					break;
 				default:
-					System.out.println("Insira um valor v�lido meu querido :)");
+					System.out.println("Insira um valor válido meu querido :)");
 				}
 			} while (!sair);
 		} catch (Exception ex) {
