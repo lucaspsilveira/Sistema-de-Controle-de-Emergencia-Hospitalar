@@ -12,6 +12,7 @@ import model.Paciente;
 
 public class Main {
 	public static void main(String[] args) {
+		Tela tela = new Tela();
 		TadListaPaciente listaPacientes = new TadListaPaciente();
 		TadFilaAtendimento filaAtendimentos = new TadFilaAtendimento();
 		try {
@@ -20,23 +21,11 @@ public class Main {
 			Paciente pacienteEncontrado = null;
 			Paciente paciente = null;
 			do {
-				System.out.println("\n========= Sistema de Controle de Emergência Hospitalar ==========");
-				System.out.println("Escolha uma das opções, digite: " + "\n 1 - Cadastrar novo Paciente "
-						+ "\n 2 - Pesquisar um Paciente " + "\n 3 - Iniciar Atendimento de um paciente "
-						+ "\n 4 - Chamar Paciente para Triagem  " + "\n 5 - Chamar Paciente para Consulta  "
-						+ "\n 6 - Realizar liberação do Paciente  " + "\n 7 - Relatórios Adminsitrativos "
-						+ "\n 'Sair' - para Sair \n");
+				tela.mostarMenu();
 				String res = bf.readLine();
 				switch (res.toLowerCase()) {
 				case "1":
-					paciente = new Paciente();
-					System.out.println("Digite o nome do paciente:");
-					paciente.setNome(bf.readLine());
-					System.out.println("Digite o CPF do paciente sem pontuação (pontuação irá ser desconsiderada):");
-					paciente.setCpf(bf.readLine().replaceAll("[^0-9]", ""));
-					System.out.println("Digite o ano de nascimento: ");
-					paciente.setAnoNascimento(Integer.parseInt(bf.readLine().replaceAll("[^0-9]", "")));
-					listaPacientes.adicionarNoComeco(paciente);
+					listaPacientes.adicionarNoComeco(tela.inserePaciente(null));
 					break;
 				case "2":
 					System.out.println("Digite o CPF do paciente que desejas pesquisar: (pontuação irá ser desconsiderada) ");
@@ -55,11 +44,7 @@ public class Main {
 					if (pacienteEncontrado == null) {
 						paciente = new Paciente();
 						System.out.println("Paciente não Encontrado");
-						paciente.setCpf(cpf);
-						System.out.println("Digite o nome do novo paciente:");
-						paciente.setNome(bf.readLine());
-						System.out.println("Digite o ano de nascimento: ");
-						paciente.setAnoNascimento(Integer.parseInt(bf.readLine().replaceAll("[^0-9]", "")));
+						paciente = tela.inserePaciente(cpf);
 						listaPacientes.adicionarNoComeco(paciente);
 						pacienteEncontrado = paciente;
 					}
