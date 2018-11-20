@@ -37,6 +37,7 @@ public class Tela {
 	}
 
 	public Atendimento realizaTriagem(Atendimento atendimento) {
+		atendimento.setTemperatura(Double.parseDouble(realizaPerguntaSimples("Qual a temperatura do paciente?", "numero")));
 		boolean entubado = realizaPerguntaSimNao("Paciente encontra-se entubado, apenético, sem pulso?" + " ou sem reação? (Sim ou não)");
 		if (entubado) {
 			atendimento.setPrioridade(1);
@@ -56,7 +57,18 @@ public class Tela {
 						atendimento.setPrioridade(4);
 						return atendimento;
 					case 2:
-						// implementar aqui gurizada
+						if (36 > atendimento.getTemperatura() || atendimento.getTemperatura() > 38) {
+							atendimento.setPrioridade(2);
+							return atendimento;
+						} else {
+							boolean apresenta = realizaPerguntaSimNao("Apresenta FC > 90 ou FR < 20 ou OP < 90% ou IPFR < 200? ");
+							if (apresenta) {
+								atendimento.setPrioridade(2);
+							} else {
+								atendimento.setPrioridade(3);
+							}
+							return atendimento;
+						}
 				}
 			}
 		}

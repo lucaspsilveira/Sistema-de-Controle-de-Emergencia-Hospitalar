@@ -15,6 +15,11 @@ public class Main {
 		Tela tela = new Tela();
 		TadListaPaciente listaPacientes = new TadListaPaciente();
 		TadFilaAtendimento filaAtendimentos = new TadFilaAtendimento();
+		TadFilaAtendimento filaAtendimentos1 = new TadFilaAtendimento();
+		TadFilaAtendimento filaAtendimentos2 = new TadFilaAtendimento();
+		TadFilaAtendimento filaAtendimentos3 = new TadFilaAtendimento();
+		TadFilaAtendimento filaAtendimentos4 = new TadFilaAtendimento();
+		TadFilaAtendimento filaAtendimentos5 = new TadFilaAtendimento();
 		try {
 			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 			boolean sair = false;
@@ -52,9 +57,30 @@ public class Main {
 					System.out.println("Paciente "+ pacienteEncontrado.getNome()+ " adicionado na fila!");
 					break;
 				case "4":
-					
-					Atendimento at = tela.realizaTriagem(filaAtendimentos.dequeue());
-					System.out.println("Vai pra fila de prioridade: "+ at.getPrioridade());
+					if (filaAtendimentos.isEmpty()) {
+						System.out.println("Fila de atendimento vazia!");
+					} else {
+						Atendimento atendimentoTriagem = tela.realizaTriagem(filaAtendimentos.dequeue());
+						System.out.println("Vai pra fila de prioridade: "+ atendimentoTriagem.getPrioridade());
+						switch (atendimentoTriagem.getPrioridade()) {
+							case 1:
+								filaAtendimentos1.enqueue(atendimentoTriagem);
+								break;
+							case 2:
+								filaAtendimentos2.enqueue(atendimentoTriagem);
+								break;
+							case 3:
+								filaAtendimentos3.enqueue(atendimentoTriagem);
+								break;
+							case 4:
+								filaAtendimentos4.enqueue(atendimentoTriagem);
+								break;
+							case 5:
+								filaAtendimentos5.enqueue(atendimentoTriagem);
+								break;
+						}
+					}
+		
 					break;
 				case "5":
 					break;
@@ -68,6 +94,16 @@ public class Main {
 					System.out.println("");
 					System.out.println("Fila de Atendimentos");
 					filaAtendimentos.imprimir();
+					System.out.println("Fila de atendimentos prioridade 1");
+					filaAtendimentos1.imprimir();
+					System.out.println("Fila de atendimentos prioridade 2");
+					filaAtendimentos2.imprimir();
+					System.out.println("Fila de atendimentos prioridade 3");
+					filaAtendimentos3.imprimir();
+					System.out.println("Fila de atendimentos prioridade 4");
+					filaAtendimentos4.imprimir();
+					System.out.println("Fila de atendimentos prioridade 5");
+					filaAtendimentos5.imprimir();
 					break;
 				case "sair":
 					sair = true;
