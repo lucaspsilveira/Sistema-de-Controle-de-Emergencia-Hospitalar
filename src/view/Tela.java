@@ -120,4 +120,28 @@ public class Tela {
 		}
 		return 4;
 	}
+	
+	public String realizaPerguntaSimples(String pergunta, String tipo) {
+		boolean passou = true;
+		try {
+			do {
+				System.out.println(pergunta);
+				String resposta = this.bf.readLine();
+				switch (tipo.toLowerCase()) {
+					case "numero":
+						resposta = resposta.replaceAll("[^0-9]", "");
+						if (!resposta.equals(""))
+							return resposta;
+					case "texto": 
+						if (!resposta.trim().equals(""))
+							return resposta;
+					default: passou = false;
+				}
+			} while (!passou);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
