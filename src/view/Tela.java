@@ -81,9 +81,13 @@ public class Tela {
 				switch (resposta.toLowerCase()) {
 					case "sim": 
 						return true;
+					case "s": 
+						return true;
 					case "não": 
 						return false;
 					case "nao": 
+						return false;
+					case "n": 
 						return false;
 					default: passou = false;
 				}
