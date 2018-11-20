@@ -67,6 +67,7 @@ public class Main {
 				case "debug":
 					System.out.println("Lista de Pacientes");
 					listaPacientes.imprimir();
+					System.out.println("");
 					System.out.println("Fila de Atendimentos");
 					filaAtendimentos.imprimir();
 					break;
