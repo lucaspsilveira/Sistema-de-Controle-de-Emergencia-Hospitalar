@@ -21,20 +21,13 @@ public class Tela {
 
 	public Paciente inserePaciente(String cpf) {
 		Paciente paciente = new Paciente();
-		try {
-			System.out.println("Digite o nome do paciente:");
-			paciente.setNome(this.bf.readLine());
-			if (cpf == null) {
-				System.out.println("Digite o CPF do paciente sem pontuação (pontuação irá ser desconsiderada):");
-				paciente.setCpf(this.bf.readLine().replaceAll("[^0-9]", ""));
-			} else {
-				paciente.setCpf(cpf);
-			}
-			System.out.println("Digite o ano de nascimento: ");
-			paciente.setAnoNascimento(Integer.parseInt(this.bf.readLine().replaceAll("[^0-9]", "")));
-		} catch (IOException e) {
-			e.printStackTrace();
+		paciente.setNome(realizaPerguntaSimples("Digite o nome do paciente:", "texto"));
+		if (cpf == null) {
+			paciente.setCpf(realizaPerguntaSimples("Digite o CPF do paciente sem pontuação (pontuação irá ser desconsiderada):", "numero"));
+		} else {
+			paciente.setCpf(cpf);
 		}
+		paciente.setAnoNascimento(Integer.parseInt(realizaPerguntaSimples("Digite o ano de nascimento: ", "numero")));
 
 		return paciente;
 	}
@@ -44,7 +37,6 @@ public class Tela {
 	}
 
 	public Atendimento realizaTriagem(Atendimento atendimento) {
-
 		boolean entubado = realizaPerguntaSimNao("Paciente encontra-se entubado, apenético, sem pulso?" + " ou sem reação? (Sim ou não)");
 		if (entubado) {
 			atendimento.setPrioridade(1);

@@ -28,8 +28,7 @@ public class Main {
 					listaPacientes.adicionarNoComeco(tela.inserePaciente(null));
 					break;
 				case "2":
-					System.out.println("Digite o CPF do paciente que desejas pesquisar: (pontuação irá ser desconsiderada) ");
-					pacienteEncontrado = listaPacientes.retornaNodoPaciente(bf.readLine().replaceAll("[^0-9]", ""));
+					pacienteEncontrado = listaPacientes.retornaNodoPaciente(tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas pesquisar: (pontuação irá ser desconsiderada) ", "numero"));
 					if (pacienteEncontrado == null)
 						System.out.println("Paciente não Encontrado");
 					else
@@ -38,8 +37,7 @@ public class Main {
 					break;
 				case "3":
 					Atendimento atendimento = new Atendimento();
-					System.out.println("Digite o CPF do paciente que desejas iniciar o antendimento: (pontuação irá ser desconsiderada) ");
-					String cpf = bf.readLine().replaceAll("[^0-9]", "");
+					String cpf = tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas pesquisar: (pontuação irá ser desconsiderada) ", "numero");
 					pacienteEncontrado = listaPacientes.retornaNodoPaciente(cpf);
 					if (pacienteEncontrado == null) {
 						paciente = new Paciente();
