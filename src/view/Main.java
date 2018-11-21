@@ -6,6 +6,7 @@ import java.io.LineNumberInputStream;
 import java.util.Calendar;
 
 import TADAtendimento.TadFilaAtendimento;
+import TADAtendimento.TadListaAtendimento;
 import TADPaciente.TadListaPaciente;
 import model.Atendimento;
 import model.Paciente;
@@ -14,6 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 		Tela tela = new Tela();
 		TadListaPaciente listaPacientes = new TadListaPaciente();
+		TadListaAtendimento listaAtendimentosEncerrados = new TadListaAtendimento();
 		TadFilaAtendimento filaAtendimentos = new TadFilaAtendimento();
 		TadFilaAtendimento filaAtendimentos1 = new TadFilaAtendimento();
 		TadFilaAtendimento filaAtendimentos2 = new TadFilaAtendimento();
@@ -83,6 +85,30 @@ public class Main {
 		
 					break;
 				case "5":
+					Atendimento consulta = new Atendimento();
+					if(!filaAtendimentos1.isEmpty()) {
+						consulta = filaAtendimentos1.dequeue();
+						System.out.println("Paciente " + consulta.getPessoa().getNome() + " encaminhado para a consulta.");
+						listaAtendimentosEncerrados.adicionarNoFinal(consulta);
+					}else if (!filaAtendimentos2.isEmpty()) {
+						consulta = filaAtendimentos2.dequeue();
+						System.out.println("Paciente " + consulta.getPessoa().getNome() + " encaminhado para a consulta.");
+						listaAtendimentosEncerrados.adicionarNoFinal(consulta);
+					}else if(!filaAtendimentos3.isEmpty()) {
+						consulta = filaAtendimentos3.dequeue();
+						System.out.println("Paciente " + consulta.getPessoa().getNome() + " encaminhado para a consulta.");
+						listaAtendimentosEncerrados.adicionarNoFinal(consulta);
+					}else if(!filaAtendimentos4.isEmpty()) {
+						consulta = filaAtendimentos4.dequeue();
+						System.out.println("Paciente " + consulta.getPessoa().getNome() + " encaminhado para a consulta.");
+						listaAtendimentosEncerrados.adicionarNoFinal(consulta);
+					}else if(!filaAtendimentos5.isEmpty()) {
+						consulta = filaAtendimentos5.dequeue();
+						System.out.println("Paciente " + consulta.getPessoa().getNome() + " encaminhado para a consulta.");
+						listaAtendimentosEncerrados.adicionarNoFinal(consulta);
+					}else {
+						System.out.println("Todas as filas estão vazias.");
+					}
 					break;
 				case "6":
 					break;
