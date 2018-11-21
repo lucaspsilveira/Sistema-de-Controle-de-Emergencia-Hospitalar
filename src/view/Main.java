@@ -63,6 +63,7 @@ public class Main {
 						System.out.println("Fila de atendimento vazia!");
 					} else {
 						Atendimento atendimentoTriagem = tela.realizaTriagem(filaAtendimentos.dequeue());
+						atendimentoTriagem.setHoraAtendimento(Calendar.getInstance());
 						System.out.println("Paciente " + atendimentoTriagem.getPessoa().getNome() + " vai pra fila de prioridade: "+ atendimentoTriagem.getPrioridade());
 						switch (atendimentoTriagem.getPrioridade()) {
 							case 1:
