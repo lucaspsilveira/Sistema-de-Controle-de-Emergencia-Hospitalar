@@ -1,4 +1,6 @@
 package TADAtendimento;
+import java.util.Calendar;
+
 import model.Atendimento;
 
 public class TadListaAtendimento {
@@ -89,10 +91,29 @@ public class TadListaAtendimento {
 		} // fecha o while
 	}
 
-	public Atendimento retornaNodoPaciente(String dado) {
+	public Atendimento retornaNodoAtendimento(String dado) {
 		NodoAtendimentoLista aux = primeiro;
 		while (aux!=null) {
 			if (aux.getDado().getPessoa().getCpf().equalsIgnoreCase(dado)) {
+				return aux.dado;
+			}
+		// fecha o if do caso onde encontrou o dado
+			// verifica se chegou ao final, sen�o chegou, passa
+			// para o pr�ximo
+		if (aux == ultimo) {
+			break;
+		} else {
+			aux = aux.proximo;
+		}
+	} // fecha o while
+		return null;
+	}
+	
+	public Atendimento liberarPacienteAtendimento(String dado) {
+		NodoAtendimentoLista aux = primeiro;
+		while (aux!=null) {
+			if (aux.getDado().getPessoa().getCpf().equalsIgnoreCase(dado)) {
+				aux.getDado().setHoraSaida(Calendar.getInstance());
 				return aux.dado;
 			}
 		// fecha o if do caso onde encontrou o dado

@@ -111,6 +111,13 @@ public class Main {
 					}
 					break;
 				case "6":
+					Atendimento liberacao = new Atendimento();
+					liberacao = listaAtendimentosEncerrados.liberarPacienteAtendimento(tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas liberar: (pontuação irá ser desconsiderada) ", "numero"));
+					if (liberacao == null)
+						System.out.println("Atendimento do paciente não encontrado.");
+					else
+						System.out.println("Paciente " + liberacao.getPessoa().getNome() + "liberado as " + liberacao.getHoraSaida().getTime());
+					
 					break;
 				case "7":
 					break;
