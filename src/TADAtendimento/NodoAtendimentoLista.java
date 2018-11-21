@@ -11,8 +11,24 @@ public class NodoAtendimentoLista {
         this.dado = dado;
         this.anterior = null;
         this.proximo = null;
-    } 
-    
-    //getters e setters serão feitos depois/algum dia/talvez   
+    }
+	public Atendimento getDado() {
+		return dado;
+	}
+	public void setDado(Atendimento dado) {
+		this.dado = dado;
+	}
+	public NodoAtendimentoLista getProximo() {
+		return proximo;
+	}
+	public void setProximo(NodoAtendimentoLista proximo) {
+		this.proximo = proximo;
+	}
+	public NodoAtendimentoLista getAnterior() {
+		return anterior;
+	}
+	public void setAnterior(NodoAtendimentoLista anterior) {
+		this.anterior = anterior;
+	}    
 }
 
