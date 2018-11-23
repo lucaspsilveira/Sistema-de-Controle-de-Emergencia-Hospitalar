@@ -37,19 +37,19 @@ public class Tela {
 	}
 
 	public Atendimento realizaTriagem(Atendimento atendimento) {
+		System.out.println("Paciente " + atendimento.getPessoa().getNome() + " chamado para triagem.");
 		atendimento.setTemperatura(Double.parseDouble(realizaPerguntaSimples("Qual a temperatura do paciente?", "numero")));
-		boolean entubado = realizaPerguntaSimNao("Paciente encontra-se entubado, apenético, sem pulso?" + " ou sem reação? (Sim ou não)");
+		boolean entubado = realizaPerguntaSimNao("Paciente encontra-se entubado/apenético? Está sem pulso/sem reação? (Sim ou não)");
 		if (entubado) {
 			atendimento.setPrioridade(1);
 			return atendimento;
 		} else {
-			boolean altorisco = realizaPerguntaSimNao("Situação de alto risco? confuso/letárgico "
-					+ "/desorientado? ou dor/sofrimento agudo? (Sim ou não)");
+			boolean altorisco = realizaPerguntaSimNao("Situação de alto risco? Está confuso/letárgico? Está desorientado ou dor/sofrimento agudo? (Sim ou não)");
 			if (altorisco) {
 				atendimento.setPrioridade(2);
 			} else {
 				switch (realizaPerguntaNenhumaUmaMuitas("Quantas coisas diferentes são necessárias? "
-						+ "raio X, testes laboratoriais, injeções, procedimentos, consulta? (Nenhuma, uma ou muitas))")) {
+						+ "Raio X, testes laboratoriais, injeções, procedimentos, consulta? (Nenhuma, uma ou muitas))")) {
 					case 0:
 						atendimento.setPrioridade(5);
 						return atendimento;

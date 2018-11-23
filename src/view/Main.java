@@ -35,7 +35,7 @@ public class Main {
 					listaPacientes.adicionarNoComeco(tela.inserePaciente(null));
 					break;
 				case "2":
-					pacienteEncontrado = listaPacientes.retornaNodoPaciente(tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas pesquisar: (pontuação irá ser desconsiderada) ", "numero"));
+					pacienteEncontrado = listaPacientes.retornaNodoPacienteCpf(tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas pesquisar: (pontuação irá ser desconsiderada) ", "numero"));
 					if (pacienteEncontrado == null)
 						System.out.println("Paciente não Encontrado");
 					else
@@ -44,11 +44,12 @@ public class Main {
 					break;
 				case "3":
 					Atendimento atendimento = new Atendimento();
-					String cpf = tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas pesquisar: (pontuação irá ser desconsiderada) ", "numero");
-					pacienteEncontrado = listaPacientes.retornaNodoPaciente(cpf);
+					String cpf = tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas iniciar o atendimento: (pontuação irá ser desconsiderada) ", "numero");
+					pacienteEncontrado = listaPacientes.retornaNodoPacienteCpf(cpf);
 					if (pacienteEncontrado == null) {
 						paciente = new Paciente();
-						System.out.println("Paciente não Encontrado");
+						System.out.println("Paciente não encontrado");
+						System.out.println("Criando o cadastro:");
 						paciente = tela.inserePaciente(cpf);
 						listaPacientes.adicionarNoComeco(paciente);
 						pacienteEncontrado = paciente;
@@ -112,13 +113,12 @@ public class Main {
 					}
 					break;
 				case "6":
-					Atendimento liberacao = new Atendimento();
+					Atendimento liberacao = new Atendimento(); //Tem que remover da lista de liberação pra não ter como liberar o mesmo paciente de novo?
 					liberacao = listaAtendimentosEncerrados.liberarPacienteAtendimento(tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas liberar: (pontuação irá ser desconsiderada) ", "numero"));
 					if (liberacao == null)
 						System.out.println("Atendimento do paciente não encontrado.");
 					else
-						System.out.println("Paciente " + liberacao.getPessoa().getNome() + "liberado as " + liberacao.getHoraSaida().getTime());
-					
+						System.out.println("Paciente " + liberacao.getPessoa().getNome() + " liberado as " + liberacao.getHoraSaida().getTime());
 					break;
 				case "7":
 					break;
@@ -143,12 +143,12 @@ public class Main {
 					sair = true;
 					break;
 				default:
-					System.out.println("Insira um valor válido meu querido :)");
+					System.out.println("Insira um valor válido.");
 				}
 			} while (!sair);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		System.out.println("Hasta la vista mi amor!");
+		System.out.println("Sistema encerrado.");
 	}
 }
