@@ -5,7 +5,7 @@ public class Paciente {
 	private String cpf;
 	private int anoNascimento;
 	
-	public Paciente(String nome, String cpf, int anoNascimento) {
+	public Paciente(String nome, String cpf, int anoNascimento) { // construtor do paciente
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
