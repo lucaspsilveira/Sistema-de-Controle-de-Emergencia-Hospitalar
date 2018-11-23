@@ -11,7 +11,7 @@ public class NodoAtendimentoFila {
         this.apos = null;
     }
     
-    //getters e setters 
+    /* Protected, então não precisa de getters e setters 
 	public Atendimento getDado() {
 		return dado;
 	}
@@ -26,6 +26,6 @@ public class NodoAtendimentoFila {
 
 	public void setApos(NodoAtendimentoFila apos) {
 		this.apos = apos;
-	} 
+	} */
 }
 

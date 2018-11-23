@@ -12,7 +12,7 @@ public class NodoPacienteLista {
         this.anterior = null;
         this.proximo = null;
     }
-    // GETTERS AND SETTERS
+    /* Protected, então não precisa de getters e setters
 	public Paciente getDado() {
 		return dado;
 	}
@@ -35,6 +35,6 @@ public class NodoPacienteLista {
 
 	public void setAnterior(NodoPacienteLista anterior) {
 		this.anterior = anterior;
-	} 
+	} */
 }
 

@@ -5,13 +5,16 @@ import model.Atendimento;
 public class NodoAtendimentoLista {
     protected Atendimento dado;
     protected NodoAtendimentoLista proximo;
-    protected NodoAtendimentoLista anterior;    
-    
-    public NodoAtendimentoLista(Atendimento dado){
+    protected NodoAtendimentoLista anterior;   
+
+	public NodoAtendimentoLista(Atendimento dado){
         this.dado = dado;
         this.anterior = null;
         this.proximo = null;
     }
+	
+	//Protected, então não precisa de getters e setters
+	/*
 	public Atendimento getDado() {
 		return dado;
 	}
@@ -29,6 +32,6 @@ public class NodoAtendimentoLista {
 	}
 	public void setAnterior(NodoAtendimentoLista anterior) {
 		this.anterior = anterior;
-	}    
+	}    */
 }
 

@@ -10,6 +10,32 @@ public class TadListaPaciente {
 		this.primeiro = null;
 		this.ultimo = null;
 	}
+	
+	public void adicionarNoFinal(Paciente dado) {
+		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
+		if (primeiro == null) {
+			// lista est� vazia
+			primeiro = novoNodoPaciente;
+			ultimo = novoNodoPaciente;
+		} else {
+			ultimo.proximo = novoNodoPaciente;
+			novoNodoPaciente.anterior = ultimo;
+			ultimo = novoNodoPaciente;
+		}
+	}
+
+	public void adicionarNoComeco(Paciente dado) {
+		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
+		if (primeiro == null) {
+			// lista est� vazia
+			primeiro = novoNodoPaciente;
+			ultimo = novoNodoPaciente;
+		} else {
+			primeiro.anterior = novoNodoPaciente;
+			novoNodoPaciente.proximo = primeiro;
+			primeiro = novoNodoPaciente;
+		}
+	}
 
 	public void removePosicao(int posicao) {
 		NodoPacienteLista remover = retornaNodoPaciente(posicao);
@@ -36,6 +62,24 @@ public class TadListaPaciente {
 		}
 		return aux;
 	}
+	
+	public Paciente retornaNodoPacienteCpf(String dado) {
+		NodoPacienteLista aux = primeiro;
+		while (aux!=null) {
+			if (aux.dado.getCpf().equalsIgnoreCase(dado)) {
+				return aux.dado;
+			}
+		// fecha o if do caso onde encontrou o dado
+			// verifica se chegou ao final, sen�o chegou, passa
+			// para o pr�ximo
+			if (aux == ultimo) {
+				break;
+			} else {
+				aux = aux.proximo;
+			}
+		} // fecha o while
+		return null;
+	}
 
 	// buscar o elemento da lista que se encontra
 	// em uma determinada posi��o;
@@ -54,7 +98,7 @@ public class TadListaPaciente {
 			return aux.dado;
 		}
 	}
-
+	
 	public void removerPorOcorrencia(String dado) {
 		NodoPacienteLista aux = primeiro;
 		while (true) {
@@ -90,24 +134,28 @@ public class TadListaPaciente {
 		} // fecha o while
 	}
 
-	public Paciente retornaNodoPaciente(String dado) {
+	public void imprimir() {
 		NodoPacienteLista aux = primeiro;
-		while (aux!=null) {
-			if (aux.dado.getCpf().equalsIgnoreCase(dado)) {
-				return aux.dado;
+		if (aux != null) {
+			while (aux != ultimo) {
+				System.out.println(aux.dado.getNome());
+				System.out.println(aux.dado.getCpf());
+				System.out.println(aux.dado.getAnoNascimento());
+				aux = aux.proximo;
 			}
-		// fecha o if do caso onde encontrou o dado
-			// verifica se chegou ao final, sen�o chegou, passa
-			// para o pr�ximo
-		if (aux == ultimo) {
-			break;
+
+			System.out.println(ultimo.dado.getNome());
+			System.out.println(ultimo.dado.getCpf());
+			System.out.println(ultimo.dado.getAnoNascimento());
 		} else {
-			aux = aux.proximo;
+			System.out.println("Lista Vazia!");
 		}
-	} // fecha o while
-		return null;
+		
 	}
 
+}
+
+/* Não são usados nem pedidos. Remover?
 	public void imprimir2() {
 		NodoPacienteLista aux = primeiro;
 		while (true) {
@@ -129,52 +177,7 @@ public class TadListaPaciente {
 			aux = aux.anterior;
 		}
 	}
-
-	public void imprimir() {
-		NodoPacienteLista aux = primeiro;
-		if (aux != null) {
-			while (aux != ultimo) {
-				System.out.println(aux.dado.getNome());
-				System.out.println(aux.dado.getCpf());
-				System.out.println(aux.dado.getAnoNascimento());
-				aux = aux.proximo;
-			}
-
-			System.out.println(ultimo.dado.getNome());
-			System.out.println(ultimo.dado.getCpf());
-			System.out.println(ultimo.dado.getAnoNascimento());
-		} else {
-			System.out.println("Lista Vazia!");
-		}
-		
-	}
-
-	public void adicionarNoFinal(Paciente dado) {
-		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
-		if (primeiro == null) {
-			// lista est� vazia
-			primeiro = novoNodoPaciente;
-			ultimo = novoNodoPaciente;
-		} else {
-			ultimo.proximo = novoNodoPaciente;
-			novoNodoPaciente.anterior = ultimo;
-			ultimo = novoNodoPaciente;
-		}
-	}
-
-	public void adicionarNoComeco(Paciente dado) {
-		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
-		if (primeiro == null) {
-			// lista est� vazia
-			primeiro = novoNodoPaciente;
-			ultimo = novoNodoPaciente;
-		} else {
-			primeiro.anterior = novoNodoPaciente;
-			novoNodoPaciente.proximo = primeiro;
-			primeiro = novoNodoPaciente;
-		}
-	}
-
+	
 	public void adicionarNaPosicao(Paciente dado, int posicao) {
 		NodoPacienteLista NodoPacienteNaPosicao = retornaNodoPaciente(posicao);
 		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
@@ -201,3 +204,4 @@ public class TadListaPaciente {
 		}
 	}
 }
+*/

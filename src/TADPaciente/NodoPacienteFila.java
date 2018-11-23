@@ -10,7 +10,7 @@ public class NodoPacienteFila {
         this.dado = dado;
         this.apos = null;
     }
-    // GETTERS AND SETTERS
+    /* Protected, então não precisa de getters e setters
 	public Paciente getDado() {
 		return dado;
 	}
@@ -25,6 +25,6 @@ public class NodoPacienteFila {
 
 	public void setApos(NodoPacienteFila proximo) {
 		this.apos = proximo;
-	}
+	}*/
 }
 

@@ -9,17 +9,49 @@ public class TadFilaPaciente {
         this.inicio = null;
     }
     
-    
-    
     public void enqueue(Paciente valor){
         if (inicio == null){
             inicio = new NodoPacienteFila(valor);
         } else {
             NodoPacienteFila aux = inicio;
-            while (aux.getApos() != null) {
-                aux = aux.getApos();
+            while (aux.apos != null) {
+                aux = aux.apos;
             }
-            aux.setApos(new NodoPacienteFila(valor));        
+            aux.apos = new NodoPacienteFila(valor);        
+        }
+    }
+        
+    public Paciente dequeue(){
+        if (isEmpty()){
+            return null;
+        } else {
+            Paciente dado = inicio.dado;
+            inicio = inicio.apos;
+            return dado;         
+        }
+    }
+    
+    public Paciente head(){
+        return inicio.dado;
+    }
+    
+    public int size() {
+        NodoPacienteFila no = inicio;
+        int cont = 0;
+        while (no != null) {
+            cont++;
+            no = no.apos;
+        }
+        return cont;
+    }
+    
+    public boolean isEmpty(){
+       return inicio == null;
+    }
+    
+    public void clear(){
+        while (!isEmpty()){
+            dequeue();
         }
     }
     
@@ -29,41 +61,8 @@ public class TadFilaPaciente {
         }
         NodoPacienteFila no = inicio;
         while (no != null){
-            System.out.println(no.getDado());
-            no = no.getApos();
-        }
-    }
-    
-    public Paciente dequeue(){
-        if (isEmpty()){
-            return null;
-        } else {
-            Paciente dado = inicio.getDado();
-            inicio = inicio.getApos();
-             return dado;
-            
-            
-        }
-    }
-    public Paciente head(){
-        return inicio.getDado();
-    }
-    public int size() {
-        NodoPacienteFila no = inicio;
-        int cont = 0;
-        while (no != null) {
-            cont++;
-            no = no.getApos();
-        }
-        
-        return cont;
-    }
-    public boolean isEmpty(){
-       return inicio == null;
-    }
-    public void clear(){
-        while (!isEmpty()){
-            dequeue();
+            System.out.println(no.dado);
+            no = no.apos;
         }
     }
 }
