@@ -1,6 +1,7 @@
 package TADAtendimento;
 import java.util.Calendar;
 
+import TADPaciente.NodoPacienteFila;
 import model.Atendimento;
 
 public class TadListaAtendimento {
@@ -118,6 +119,116 @@ public class TadListaAtendimento {
 	} // fecha o while
 		return null;
 	}
+	
+	 public int size() {
+	        NodoAtendimentoLista no = primeiro;
+	        int cont = 0;
+	        while (no != null) {
+	            cont++;
+	            no = no.proximo;
+	        }
+	        return cont;
+	 }
+	 
+	 
+	 public long calculaMediaChegadaAtendimento() {// percorre todos os atendimentos e soma a diferença de horas
+		 NodoAtendimentoLista aux = primeiro;
+		 long somatorio = 0;
+		 int cont = 0;
+			while (aux!=null) {
+				if (aux.dado.getHoraAtendimento() != null && aux.dado.getHoraChegada() != null) {
+					somatorio += aux.dado.getDiffHorasChegadaAtendimento();
+					cont++;
+				}
+				
+				if (aux == ultimo) {
+					break;
+				} else {
+					aux = aux.proximo;
+				}
+			}
+			return somatorio / this.size();
+	 }
+	 public long calculaMediaAtendimentoSaida() { // percorre todos os atendimentos e soma a diferença de horas
+		 NodoAtendimentoLista aux = primeiro;
+		 long somatorio = 0;
+		 int cont = 0;
+			while (aux!=null) {
+				if (aux.dado.getHoraAtendimento() != null && aux.dado.getHoraSaida() != null) {
+					somatorio += aux.dado.getDiffHorasAtendimentoSaida();
+					cont++;
+				}
+					
+				if (aux == ultimo) {
+					break;
+				} else {
+					aux = aux.proximo;
+				}
+			}
+			return somatorio / cont;
+	 }
+	 
+	 public long[] calculaMediaAtendimentoCadaFila() {
+		 NodoAtendimentoLista aux = primeiro;
+		 long somatorioFila1 = 0;
+		 long somatorioFila2 = 0;
+		 long somatorioFila3 = 0;
+		 long somatorioFila4 = 0;
+		 long somatorioFila5 = 0;
+		 int contFila1 = 0;
+		 int contFila2 = 0;
+		 int contFila3 = 0;
+		 int contFila4 = 0;
+		 int contFila5 = 0;
+		 
+			while (aux!=null) {
+				if (aux.dado.getHoraChegada() != null && aux.dado.getHoraSaida() != null) {
+					switch (aux.dado.getPrioridade()) { // swicth case pra somar emc cada prioridade
+						case 1:
+							somatorioFila1 += aux.dado.getDiffHorasChegadaSaida();
+							contFila1++;
+							break;
+						case 2:
+							somatorioFila2 += aux.dado.getDiffHorasChegadaSaida();
+							contFila2++;
+							break;
+						case 3:
+							somatorioFila3 += aux.dado.getDiffHorasChegadaSaida();
+							contFila3++;
+							break;
+						case 4:
+							somatorioFila4 += aux.dado.getDiffHorasChegadaSaida();
+							contFila4++;
+							break;
+						case 5:
+							somatorioFila5 += aux.dado.getDiffHorasChegadaSaida();
+							contFila5++;
+							break;
+					}
+				}
+					
+				if (aux == ultimo) {
+					break;
+				} else {
+					aux = aux.proximo;
+				}
+			}
+			// realiza verficiação se está 0, para não ocorrer divisão por 0 na divisão na mensagem de retorno
+			if (contFila1 == 0)
+				contFila1 = 1;
+			if (contFila2 == 0)
+				contFila2 = 1;
+			if (contFila3 == 0)
+				contFila3 = 1;
+			if (contFila4 == 0)
+				contFila4 = 1;
+			if (contFila5 == 0)
+				contFila5 = 1;
+			long vetorSomatorios[] = {(somatorioFila1 / contFila1),(somatorioFila2 / contFila2), (somatorioFila3 / contFila3), (somatorioFila4 / contFila4), (somatorioFila5 / contFila5)};
+			return vetorSomatorios;
+	 }
+	 
+	 
 
 	public void removerPorOcorrencia(String dado) {
 		NodoAtendimentoLista aux = primeiro;
@@ -161,12 +272,18 @@ public class TadListaAtendimento {
 				System.out.println(aux.dado.getPessoa().getNome());
 				System.out.println(aux.dado.getPessoa().getCpf());
 				System.out.println(aux.dado.getPessoa().getAnoNascimento());
+				System.out.println("Chegada ao atendimento: "+ aux.dado.getDiffHorasChegadaAtendimento());
+				System.out.println("Atendimento até a saída: "+ aux.dado.getDiffHorasAtendimentoSaida());
+				System.out.println("Chegada até a saída: "+ aux.dado.getDiffHorasChegadaSaida());
 				aux = aux.proximo;
 			}
 
 			System.out.println(ultimo.dado.getPessoa().getNome());
 			System.out.println(ultimo.dado.getPessoa().getCpf());
 			System.out.println(ultimo.dado.getPessoa().getAnoNascimento());
+			System.out.println("Chegada ao atendimento: "+ aux.dado.getDiffHorasChegadaAtendimento());
+			System.out.println("Atendimento até a saída: "+ aux.dado.getDiffHorasAtendimentoSaida());
+			System.out.println("Chegada até a saída: "+ aux.dado.getDiffHorasChegadaSaida());
 		} else {
 			System.out.println("Lista Vazia!");
 		}

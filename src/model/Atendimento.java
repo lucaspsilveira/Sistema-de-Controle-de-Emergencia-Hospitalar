@@ -1,5 +1,6 @@
 package model;
 
+import java.time.Duration;
 import java.util.Calendar;
 
 public class Atendimento {
@@ -65,6 +66,36 @@ public class Atendimento {
 	}
 	public void setParecer(String parecer) {
 		this.parecer = parecer;
+	}
+	public long getDiffHorasChegadaAtendimento() {
+		if (this.horaChegada != null && this.horaAtendimento != null) {
+			Duration diferencaTempo = Duration.between(this.horaChegada.toInstant(), this.horaAtendimento.toInstant());
+			//System.out.println("Tempo de chegada até o atendimento: "+ timeElapsed.toMillis() / 1000);
+			return diferencaTempo.toMillis() / 1000;
+		} else {
+			return 0;
+		}
+		
+	}
+	public long getDiffHorasAtendimentoSaida() {
+		if (this.horaSaida != null && this.horaAtendimento != null) {
+			Duration diferencaTempo = Duration.between(this.horaAtendimento.toInstant(), this.horaSaida.toInstant());
+			//System.out.println("Tempo do atendimento até a saída: "+ timeElapsed.toMillis() / 1000);
+			return diferencaTempo.toMillis() / 1000;
+		} else {
+			return 0;
+		}
+		
+	}
+	public long getDiffHorasChegadaSaida() {
+		if (this.horaChegada != null && this.horaSaida != null) {
+			Duration diferencaTempo = Duration.between(this.horaChegada.toInstant(), this.horaSaida.toInstant());
+			//System.out.println("Tempo de chegada até a saída: "+ timeElapsed.toMillis() / 1000);
+			return diferencaTempo.toMillis() / 1000;
+		} else {
+			return 0;
+		}
+		
 	}
 	
 	

@@ -121,6 +121,13 @@ public class Main {
 						System.out.println("Paciente " + liberacao.getPessoa().getNome() + " liberado as " + liberacao.getHoraSaida().getTime());
 					break;
 				case "7":
+					System.out.println("Tempo médio de espera para atendimento em segundos aproximadamente:  "+ listaAtendimentosEncerrados.calculaMediaChegadaAtendimento());
+					System.out.println("Tempo médio de atendimento em segundos aproximadamente:  "+ listaAtendimentosEncerrados.calculaMediaAtendimentoSaida());
+					System.out.println("Tempo médio de atendimento em cada fila: ");
+					long[] mediaFilas = listaAtendimentosEncerrados.calculaMediaAtendimentoCadaFila(); // vetor para armazenar as médias de tempo de atendimento de cada fila
+					for (int i = 0; i < mediaFilas.length; i++) {
+						System.out.println("Tempo médio de atendimento na fila "+ (i + 1)+ " : "+ mediaFilas[i]+ " segundos.");
+					}
 					break;
 				case "debug":
 					System.out.println("Lista de Pacientes");
@@ -138,6 +145,8 @@ public class Main {
 					filaAtendimentos4.imprimir();
 					System.out.println("Fila de atendimentos prioridade 5");
 					filaAtendimentos5.imprimir();
+					System.out.println("Lista de atendimentos encerrados");
+					listaAtendimentosEncerrados.imprimir();
 					break;
 				case "sair":
 					sair = true;
