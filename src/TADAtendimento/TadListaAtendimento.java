@@ -105,7 +105,10 @@ public class TadListaAtendimento {
 		NodoAtendimentoLista aux = primeiro;
 		while (aux!=null) {
 			if (aux.dado.getPessoa().getCpf().equalsIgnoreCase(dado)) {
-				aux.dado.setHoraSaida(Calendar.getInstance());
+				if (aux.dado.getHoraSaida() == null)
+					aux.dado.setHoraSaida(Calendar.getInstance());
+				else
+					return null;
 				return aux.dado;
 			}
 		// fecha o if do caso onde encontrou o dado

@@ -127,7 +127,7 @@ public class Main {
 					Atendimento liberacao = new Atendimento();
 					liberacao = listaAtendimentosEncerrados.liberarPacienteAtendimento(tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas liberar: (pontuação irá ser desconsiderada) ", "numero"));
 					if (liberacao == null)
-						System.out.println("Atendimento do paciente não encontrado.");
+						System.out.println("Não foi possível liberar o paciente. O mesmo já foi liberado ou não está cadastrado com este CPF no sistema.");
 					else {
 						if(tela.realizaPerguntaSimNao("Gostaria de consultar o parecer antes da liberação?")) {
 							if(liberacao.getParecer() != null) {
