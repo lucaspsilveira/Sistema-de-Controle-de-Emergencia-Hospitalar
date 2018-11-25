@@ -147,7 +147,11 @@ public class TadListaAtendimento {
 					aux = aux.proximo;
 				}
 			}
-			return somatorio / this.size();
+			try {
+				return somatorio / this.size();
+			} catch (ArithmeticException e) {
+				return 0;
+			}
 	 }
 	 public long calculaMediaAtendimentoSaida() { // percorre todos os atendimentos e soma a diferença de horas
 		 NodoAtendimentoLista aux = primeiro;
@@ -165,7 +169,11 @@ public class TadListaAtendimento {
 					aux = aux.proximo;
 				}
 			}
-			return somatorio / cont;
+			try {
+				return somatorio / cont;
+			} catch (ArithmeticException e) {
+				return 0;			
+			}
 	 }
 	 
 	 public long[] calculaMediaAtendimentoCadaFila() {
