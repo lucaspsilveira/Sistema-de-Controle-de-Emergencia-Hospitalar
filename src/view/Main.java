@@ -37,9 +37,10 @@ public class Main {
 				case "2":
 					pacienteEncontrado = listaPacientes.retornaNodoPacienteCpf(tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas pesquisar: (pontuação irá ser desconsiderada) ", "numero"));
 					if (pacienteEncontrado == null)
-						System.out.println("Paciente não Encontrado");
-					else
+						System.out.println("Paciente não encontrado");
+					else {
 						pacienteEncontrado.imprimePaciente();
+					}
 					
 					break;
 				case "3":
@@ -91,34 +92,54 @@ public class Main {
 					if(!filaAtendimentos1.isEmpty()) {
 						consulta = filaAtendimentos1.dequeue();
 						System.out.println("Paciente " + consulta.getPessoa().getNome() + " encaminhado para a consulta.");
+						tela.redigirParecer(consulta);
 						listaAtendimentosEncerrados.adicionarNoFinal(consulta);
+						
 					}else if (!filaAtendimentos2.isEmpty()) {
 						consulta = filaAtendimentos2.dequeue();
 						System.out.println("Paciente " + consulta.getPessoa().getNome() + " encaminhado para a consulta.");
+						tela.redigirParecer(consulta);
 						listaAtendimentosEncerrados.adicionarNoFinal(consulta);
+						
 					}else if(!filaAtendimentos3.isEmpty()) {
 						consulta = filaAtendimentos3.dequeue();
 						System.out.println("Paciente " + consulta.getPessoa().getNome() + " encaminhado para a consulta.");
+						tela.redigirParecer(consulta);
 						listaAtendimentosEncerrados.adicionarNoFinal(consulta);
+						
 					}else if(!filaAtendimentos4.isEmpty()) {
 						consulta = filaAtendimentos4.dequeue();
 						System.out.println("Paciente " + consulta.getPessoa().getNome() + " encaminhado para a consulta.");
+						tela.redigirParecer(consulta);
 						listaAtendimentosEncerrados.adicionarNoFinal(consulta);
+						
 					}else if(!filaAtendimentos5.isEmpty()) {
 						consulta = filaAtendimentos5.dequeue();
 						System.out.println("Paciente " + consulta.getPessoa().getNome() + " encaminhado para a consulta.");
+						tela.redigirParecer(consulta);
 						listaAtendimentosEncerrados.adicionarNoFinal(consulta);
+						
 					}else {
 						System.out.println("Todas as filas estão vazias.");
 					}
 					break;
 				case "6":
-					Atendimento liberacao = new Atendimento(); //Tem que remover da lista de liberação pra não ter como liberar o mesmo paciente de novo?
+					Atendimento liberacao = new Atendimento();
 					liberacao = listaAtendimentosEncerrados.liberarPacienteAtendimento(tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas liberar: (pontuação irá ser desconsiderada) ", "numero"));
 					if (liberacao == null)
 						System.out.println("Atendimento do paciente não encontrado.");
-					else
-						System.out.println("Paciente " + liberacao.getPessoa().getNome() + " liberado as " + liberacao.getHoraSaida().getTime());
+					else {
+						if(tela.realizaPerguntaSimNao("Gostaria de consultar o parecer antes da liberação?")) {
+							if(liberacao.getParecer() != null) {
+								System.out.println("Parecer: ");
+								System.out.println(liberacao.getParecer());
+							}else {
+								System.out.println("Não há parecer para esse paciente.");
+							}
+						}
+						System.out.println("Paciente " + liberacao.getPessoa().getNome() + " liberado as " 
+						+ liberacao.getHoraSaida().getTime().getHours() + " horas e " + liberacao.getHoraSaida().getTime().getMinutes() + " minutos.");
+					}
 					break;
 				case "7":
 					System.out.println("Tempo médio de espera para atendimento em segundos aproximadamente:  "+ listaAtendimentosEncerrados.calculaMediaChegadaAtendimento());

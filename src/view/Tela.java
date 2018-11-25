@@ -28,7 +28,7 @@ public class Tela {
 			paciente.setCpf(cpf);
 		}
 		paciente.setAnoNascimento(Integer.parseInt(realizaPerguntaSimples("Digite o ano de nascimento: ", "numero")));
-
+		System.out.println("Paciente " + paciente.getNome() + " cadastrado.");
 		return paciente;
 	}
 
@@ -147,5 +147,16 @@ public class Tela {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public void redigirParecer (Atendimento consulta) {
+		if(this.realizaPerguntaSimNao("Gostaria de redigir um parecer?")) {
+			System.out.println("Digite o parecer: ");
+			try {
+				consulta.setParecer(bf.readLine());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
