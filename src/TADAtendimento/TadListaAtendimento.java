@@ -111,7 +111,6 @@ public class TadListaAtendimento {
 	 * Método que realiza a busca do elemento na lista que se encontra em determinada posição, finaliza 
 	 * a busca se o elemento for encontrado, caso contrário, retorna nulo.
 	 * @param posicao
-	 * @return
 	 */
 	
 	public Atendimento retornaDado(int posicao) {
@@ -130,9 +129,9 @@ public class TadListaAtendimento {
 		}
 	}
 	/***
-	 * 
+	 * Método que finaliza o atendimento e libera o paciente, pesquisa o registro na lista de atendimentos
+	 * e registra a hora da saída do paciente
 	 * @param dado
-	 * @return
 	 */
 	public Atendimento liberarPacienteAtendimento(String dado) {
 		NodoAtendimentoLista aux = primeiro;
@@ -156,6 +155,10 @@ public class TadListaAtendimento {
 		return null;
 	}
 	
+	/***
+	 * Método que retorna o número de elementos da fila
+	 * @return contador que indica quantos atendimentos estão na fila.
+	 */
 	 public int size() {
 	        NodoAtendimentoLista no = primeiro;
 	        int cont = 0;
@@ -166,6 +169,10 @@ public class TadListaAtendimento {
 	        return cont;
 	 }
 	 
+	 /**
+	  * Método que calcula o tempo médio de espera do paciente para atendimento
+	  * @return tempo entre a chegada do paciente e a chamada para atendimento.
+	  */
 	 
 	 public long calculaMediaChegadaAtendimento() {// percorre todos os atendimentos e soma a diferença de horas
 		 NodoAtendimentoLista aux = primeiro;
@@ -183,12 +190,16 @@ public class TadListaAtendimento {
 					aux = aux.proximo;
 				}
 			}
-			try {
+			try { //trata as exceções
 				return somatorio / this.size();
-			} catch (ArithmeticException e) {
+			} catch (ArithmeticException e) { // Fornece informações para correção do erro
 				return 0;
 			}
 	 }
+	 /***
+	  * Método para calcular o tempo médio de atendimento
+	  * @return tempo entre a chamada para atendimento e a saída do paciente
+	  */
 	 public long calculaMediaAtendimentoSaida() { // percorre todos os atendimentos e soma a diferença de horas
 		 NodoAtendimentoLista aux = primeiro;
 		 long somatorio = 0;
@@ -208,11 +219,15 @@ public class TadListaAtendimento {
 			
 			try { // Método para tratar exceções
 				return somatorio / cont;
-			} catch (ArithmeticException e) {
+			} catch (ArithmeticException e) { //Fornece informações para correção do erro
 				return 0;			
 			}
 	 }
-	 
+	 /***
+	  * Método para calcular o tempo médio de atendimento
+	  * @return tempo entre a chegada e a saída de cada fila.
+	  */
+	  
 	 public long[] calculaMediaAtendimentoCadaFila() {
 		 NodoAtendimentoLista aux = primeiro;
 		 long somatorioFila1 = 0;
@@ -274,7 +289,10 @@ public class TadListaAtendimento {
 	 }
 	 
 	 
-
+	 /***
+	  * Método que remove o elemento da lista de atendimento
+	  * @param dado
+	  */
 	public void removerPorOcorrencia(String dado) {
 		NodoAtendimentoLista aux = primeiro;
 		while (true) {
@@ -309,7 +327,10 @@ public class TadListaAtendimento {
 			}
 		} // fecha o while
 	}
-	
+	/**
+	 * Método para impressão dos relatórios administrativos se tiver dados, caso contrário, informa
+	 * que a lista está vazia.
+	 */
 	public void imprimir() {
 		NodoAtendimentoLista aux = primeiro;
 		if (aux != null) {
