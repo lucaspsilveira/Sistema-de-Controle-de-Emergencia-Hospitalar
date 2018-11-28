@@ -5,7 +5,11 @@ import model.Atendimento;
 public class NodoAtendimentoLista {
     protected Atendimento dado;
     protected NodoAtendimentoLista proximo;
-    protected NodoAtendimentoLista anterior;   
+    protected NodoAtendimentoLista anterior;  
+    /***
+     * 
+     * @param dado
+     */
 
 	public NodoAtendimentoLista(Atendimento dado){
         this.dado = dado;

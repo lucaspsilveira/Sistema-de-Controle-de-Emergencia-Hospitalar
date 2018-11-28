@@ -1,6 +1,11 @@
 package TADAtendimento;
 
 import model.Atendimento;
+/***
+ * 
+ * @author lucas pacheco, guilherme negrini, dieine schiavon
+ *
+ */
 
 public class TadFilaAtendimento {
     NodoAtendimentoFila inicio;
@@ -9,6 +14,10 @@ public class TadFilaAtendimento {
         this.inicio = null;
     }
     
+    /***
+     * Método que insere o elemento atendimento no final da fila
+     * @param valor
+     */
     public void enqueue(Atendimento valor){
         if (inicio == null){
             inicio = new NodoAtendimentoFila(valor);
@@ -20,9 +29,12 @@ public class TadFilaAtendimento {
             aux.apos = new NodoAtendimentoFila(valor);        
         }
     }
-    
+    /***
+     * Método que remove e retorna o elemento atendimento do início da fila e dá erro se a fila estiver vazia
+     * @return nulo
+     */
     public Atendimento dequeue(){
-        if (isEmpty()){
+        if (isEmpty()){ 
             return null;
         } else {
             Atendimento dado = inicio.dado;
@@ -30,11 +42,18 @@ public class TadFilaAtendimento {
             return dado;         
         }
     }
-    
+   /**
+    * Método que retorna, mas não remove, o primeiro elemento da fila, e dá erro se a fila estiver vazia
+    *
+    */
     public Atendimento head(){
         return inicio.dado;
     }
     
+    /**
+     * Método que informa a quantidade de atendimentos na fila, enquanto não for nulo, acresce o atendimento
+     * ao contador e  retorna o número de elementos da fila.
+     */
     public int size() {
         NodoAtendimentoFila no = inicio;
         int cont = 0;
@@ -45,16 +64,23 @@ public class TadFilaAtendimento {
         return cont;
     }
     
+    // retorna true se a fila estiver vazia, e false caso contrário
+     
     public boolean isEmpty(){
        return inicio == null;
     }
+    
+    // esvazia a fila
     
     public void clear(){
         while (!isEmpty()){
             dequeue();
         }
     }
-    
+    /**
+     * Imprime informações se a fila estiver vazia ou, caso contrário, as informações do paciente para
+     * atendimento.
+     */
     public void imprimir(){
         if (isEmpty()) {
             System.out.println("Fila Vazia");
