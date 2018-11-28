@@ -3,21 +3,11 @@ package model;
 import java.time.Duration;
 import java.util.Calendar;
 
-/**
- * @author lucas pacheco, guilherme negrini, dieine Schiavon
+/***
+ * 
+ * @author lucas pacheco, guilherme negrini, dieineschiavon
  *
- * Criação da classe Atendimento
- * @param dado a ser adicionado: temperatura corporal, classificação da prioridade do atendimento e parecer do profissional
- * da saúde.
- * @return pessoa
- * @return hora de chegada
- * @return hora do atendimento
- * @return hora da saída
- * @return double: temperatura
- * @return int: prioridade
- * @return String: parecer
  */
-
 
 public class Atendimento {
 	private Paciente pessoa;
@@ -27,7 +17,16 @@ public class Atendimento {
 	private double temperatura;
 	private int prioridade;
 	private String parecer;
-		
+		/***
+		 * 
+		 * @param pessoa
+		 * @param horaChegada
+		 * @param horaAtendimento
+		 * @param horaSaida
+		 * @param temperatura
+		 * @param prioridade
+		 * @param parecer
+		 */
 	public Atendimento(Paciente pessoa, Calendar horaChegada, Calendar horaAtendimento, Calendar horaSaida,
 			double temperatura, int prioridade, String parecer) {
 		super();
@@ -38,6 +37,7 @@ public class Atendimento {
 		this.temperatura = temperatura;
 		this.prioridade = prioridade;
 		this.parecer = parecer;
+	
 	}
 	public Atendimento() {
 	}
@@ -84,11 +84,12 @@ public class Atendimento {
 		this.parecer = parecer;
 	}
 	
-	/**
-     * Método que retorna o tempo passado entre a chegada até o atendimento inicial do paciente.
-     * @param dado a ser encontrado: tempo que o paciente ficou aguardando atendimento.
-     * @return a diferença entre a hora da chegada até a hora do atendimento inicial.
-     */  
+	/***
+	 * Método que retorna o tempo passado, em segundos, entre a chegada até o atendimento inicial do paciente.
+	 * parâmetro hora inicial, assume o horário que está no calendário do computador.
+     * dado a ser encontrado: tempo que o paciente ficou aguardando atendimento.
+	 * @return
+	 */
 	
 	public long getDiffHorasChegadaAtendimento() {
 		if (this.horaChegada != null && this.horaAtendimento != null) {
@@ -101,11 +102,11 @@ public class Atendimento {
 		
 	}
 	
-	/**
-     * Método que retorna o tempo passado entre o início  do atendimento até a hora da saída do paciente.
-     * @param a ser encontrado: tempo que o paciente permaneceu em atendimento
-     * @return a diferença entre a hora que o paciente entrou em atendimento até a hora da finalização do atendimento.
-     */  
+	/***
+	 * Método que retorna o tempo passado, em segundos, entre o início  do atendimento até a hora da saída do paciente.
+     * Dado a ser encontrado: tempo que o paciente permaneceu em atendimento
+	 * @return
+	 */
 	public long getDiffHorasAtendimentoSaida() {
 		if (this.horaSaida != null && this.horaAtendimento != null) {
 			Duration diferencaTempo = Duration.between(this.horaAtendimento.toInstant(), this.horaSaida.toInstant());
@@ -118,9 +119,9 @@ public class Atendimento {
 	}
 	
 	/**
-     * Método que retorna o tempo passado entre a chegada para atendimento até a hora da saída do paciente do atendimento.
-     * @param a ser encontrado: tempo entre a chegada até a saída do atendimento
-     * @return a diferença entre a hora que o paciente chegou para aguardar atendimento até a hora da finalização do atendimento.
+     * Método que retorna o tempo passado, em segundos, entre a chegada para atendimento até a hora da saída do paciente do atendimento.
+     * Dado ser encontrado: tempo entre a chegada até a saída do atendimento
+     * @return  
      */  
 	
 	public long getDiffHorasChegadaSaida() {
