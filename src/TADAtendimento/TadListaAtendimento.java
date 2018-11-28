@@ -3,20 +3,29 @@ import java.util.Calendar;
 
 import TADPaciente.NodoPacienteFila;
 import model.Atendimento;
-
+/***
+ * 
+ * @author lucas pacheco guilherme negrini, dieine schiavon
+ *
+ */
 public class TadListaAtendimento {
 	private NodoAtendimentoLista primeiro;
 	private NodoAtendimentoLista ultimo;
+	
 
 	public TadListaAtendimento() {
 		this.primeiro = null;
 		this.ultimo = null;
 	}
 	
+	/***
+	 * Método para inserir o atendimento no final da lista.
+	 * @param dado
+	 */
 	public void adicionarNoFinal(Atendimento dado) {
 		NodoAtendimentoLista novoNodoAtendimento = new NodoAtendimentoLista(dado);
 		if (primeiro == null) {
-			// lista est� vazia
+			// lista está vazia
 			primeiro = novoNodoAtendimento;
 			ultimo = novoNodoAtendimento;
 		} else {
@@ -25,11 +34,15 @@ public class TadListaAtendimento {
 			ultimo = novoNodoAtendimento;
 		}
 	}
-
+	/***
+	 * Método para inserir o atendimento no início da fila.
+	 * @param dado
+	 */
+	
 	public void adicionarNoComeco(Atendimento dado) {
 		NodoAtendimentoLista novoNodoAtendimento = new NodoAtendimentoLista(dado);
 		if (primeiro == null) {
-			// lista est� vazia
+			// lista está vazia
 			primeiro = novoNodoAtendimento;
 			ultimo = novoNodoAtendimento;
 		} else {
@@ -38,7 +51,10 @@ public class TadListaAtendimento {
 			primeiro = novoNodoAtendimento;
 		}
 	}
-
+	/***
+	 * Método que remove o elemento atendimento contido em determinada posição da lista.
+	 * @param posicao
+	 */
 	public void removePosicao(int posicao) {
 		NodoAtendimentoLista remover = retornaNodoAtendimento(posicao);
 		if (remover == primeiro) {
@@ -52,7 +68,11 @@ public class TadListaAtendimento {
 			remover.proximo.anterior = remover.anterior;
 		}
 	}
-
+	/***
+	 * Método que retorna o elemento atendimento contido em determinada posição.
+	 * @param posicao
+	 * @return aux
+	 */
 	public NodoAtendimentoLista retornaNodoAtendimento(int posicao) {
 		NodoAtendimentoLista aux = primeiro;
 		for (int i = 0; i < posicao; i++) {
@@ -65,6 +85,11 @@ public class TadListaAtendimento {
 		return aux;
 	}
 	
+	/***
+	 * Método que realiza a busca do paciente pelo cpf
+	 * @param dado
+	 * @return nulo caso não exista paciente com o cpf informado
+	 */
 	public Atendimento retornaNodoAtendimentoCpf(String dado) {
 		NodoAtendimentoLista aux = primeiro;
 		while (aux!=null) {
@@ -72,8 +97,8 @@ public class TadListaAtendimento {
 				return aux.dado;
 			}
 		// fecha o if do caso onde encontrou o dado
-			// verifica se chegou ao final, sen�o chegou, passa
-			// para o pr�ximo
+			// verifica se chegou ao final, senão chegou, passa
+			// para o próximo
 			if (aux == ultimo) {
 				break;
 			} else {
@@ -82,9 +107,13 @@ public class TadListaAtendimento {
 		} // fecha o while
 		return null;
 	}
-
-	// buscar o elemento da lista que se encontra
-	// em uma determinada posi��o;
+	/***
+	 * Método que realiza a busca do elemento na lista que se encontra em determinada posição, finaliza 
+	 * a busca se o elemento for encontrado, caso contrário, retorna nulo.
+	 * @param posicao
+	 * @return
+	 */
+	
 	public Atendimento retornaDado(int posicao) {
 		NodoAtendimentoLista aux = primeiro;
 		for (int i = 0; i < posicao; i++) {
@@ -100,7 +129,11 @@ public class TadListaAtendimento {
 			return aux.dado;
 		}
 	}
-	
+	/***
+	 * 
+	 * @param dado
+	 * @return
+	 */
 	public Atendimento liberarPacienteAtendimento(String dado) {
 		NodoAtendimentoLista aux = primeiro;
 		while (aux!=null) {
@@ -112,8 +145,8 @@ public class TadListaAtendimento {
 				return aux.dado;
 			}
 		// fecha o if do caso onde encontrou o dado
-			// verifica se chegou ao final, sen�o chegou, passa
-			// para o pr�ximo
+			// verifica se chegou ao final, senão chegou, passa
+			// para o próximo
 		if (aux == ultimo) {
 			break;
 		} else {
@@ -172,7 +205,8 @@ public class TadListaAtendimento {
 					aux = aux.proximo;
 				}
 			}
-			try {
+			
+			try { // Método para tratar exceções
 				return somatorio / cont;
 			} catch (ArithmeticException e) {
 				return 0;			
@@ -194,7 +228,7 @@ public class TadListaAtendimento {
 		 
 			while (aux!=null) {
 				if (aux.dado.getHoraChegada() != null && aux.dado.getHoraSaida() != null) {
-					switch (aux.dado.getPrioridade()) { // swicth case pra somar emc cada prioridade
+					switch (aux.dado.getPrioridade()) { // swicth case pra somar em cada prioridade
 						case 1:
 							somatorioFila1 += aux.dado.getDiffHorasChegadaSaida();
 							contFila1++;
@@ -224,7 +258,7 @@ public class TadListaAtendimento {
 					aux = aux.proximo;
 				}
 			}
-			// realiza verficiação se está 0, para não ocorrer divisão por 0 na divisão na mensagem de retorno
+			// realiza verificação se está 0, para não ocorrer divisão por 0 na divisão na mensagem de retorno
 			if (contFila1 == 0)
 				contFila1 = 1;
 			if (contFila2 == 0)
@@ -266,8 +300,8 @@ public class TadListaAtendimento {
 					break;
 				}
 			} // fecha o if do caso onde encontrou o dado
-				// verifica se chegou ao final, sen�o chegou, passa
-				// para o pr�ximo
+				// verifica se chegou ao final, senão chegou, passa
+				// para o próximo
 			if (aux == ultimo) {
 				break;
 			} else {
