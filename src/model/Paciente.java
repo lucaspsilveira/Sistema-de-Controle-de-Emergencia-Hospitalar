@@ -1,17 +1,20 @@
 package model;
-/**
- * @author lucas pacheco, guilherme negrini, dieine Schiavon
+/***
+ * 
+ * @author lucas pacheco, guilherme negrini, dieine schiavon
  *
- * Criação da classe paciente: cadastro 
- * @param dado String conteúdo a ser adicionado: cadastro inicial, nome e cpf do paciente.
- * @param dado int: ano de nascimento do paciente.
- * @return nome, cpf e ano de nascimento.
  */
 
 public class Paciente {
 	private String nome;
 	private String cpf;
 	private int anoNascimento;
+	/***
+	 * Cadastro com informações dos pacientes
+	 * @param nome
+	 * @param cpf
+	 * @param anoNascimento
+	 */
 
 	public Paciente(String nome, String cpf, int anoNascimento) { 
 		super();
@@ -40,9 +43,7 @@ public class Paciente {
 		this.anoNascimento = anoNascimento;
 	}
 	
-	/**
-	 * Imprime dados do cadastro inicial do paciente.
-	 */
+	//Imprime dados cadastrais do paciente
 	
 	public void imprimePaciente() { 
 		System.out.println("Nome: "+ this.getNome());
