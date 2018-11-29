@@ -11,9 +11,9 @@ public class Paciente {
 	private int anoNascimento;
 	/***
 	 * Cadastro com informações dos pacientes
-	 * @param nome
-	 * @param cpf
-	 * @param anoNascimento
+	 * @param nome - Nome do paciente
+	 * @param cpf - CPF do paciente
+	 * @param anoNascimento - Ano de nascimento do paciente
 	 */
 
 	public Paciente(String nome, String cpf, int anoNascimento) { 
@@ -24,6 +24,8 @@ public class Paciente {
 	}
 	public Paciente() {
 	}
+	
+	//Getters e setters
 	public String getNome() {
 		return nome;
 	}
