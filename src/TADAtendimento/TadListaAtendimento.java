@@ -135,7 +135,7 @@ public class TadListaAtendimento {
 	 * @return Atendimento
 	 */
 	public Atendimento liberarPacienteAtendimento(String dado) {
-		NodoAtendimentoLista aux = primeiro;
+		NodoAtendimentoLista aux = ultimo;
 		while (aux!=null) { //Percorre a lista até encontrar um paciente cujo CPF seja igual ao informado
 			if (aux.dado.getPessoa().getCpf().equalsIgnoreCase(dado)) {
 				if (aux.dado.getHoraSaida() == null)
@@ -147,10 +147,10 @@ public class TadListaAtendimento {
 		// fecha o if do caso onde encontrou o dado
 			// verifica se chegou ao final, senão chegou, passa
 			// para o próximo
-		if (aux == ultimo) {
+		if (aux == primeiro) {
 			break;
 		} else {
-			aux = aux.proximo;
+			aux = aux.anterior;
 		}
 	} // fecha o while
 		return null;

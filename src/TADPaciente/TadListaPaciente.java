@@ -104,6 +104,28 @@ public class TadListaPaciente {
 		return null;
 	}
 	/***
+	 * Método que atuliza a situação do paciente
+	 * @param emAtendimento - Se está em atendimento ou não
+	 * @param cpf - CPF do paciente
+	 * 
+	 */
+	public void defineAtendimento(String cpf, boolean emAtendimento) {
+		NodoPacienteLista aux = primeiro;
+		while (aux!=null) {
+			if (aux.dado.getCpf().equalsIgnoreCase(cpf)) {
+				aux.dado.setEmAtendimento(emAtendimento);
+			}
+		// fecha o if do caso onde encontrou o dado
+			// verifica se chegou ao final, senão chegou, passa
+			// para o próximo
+			if (aux == ultimo) {
+				break;
+			} else {
+				aux = aux.proximo;
+			}
+		} // fecha o while
+	}
+	/***
 	 * Método que busca o elemento da lista que se encontra em uma determinada posição.
 	 * @param posicao
 	 * @return Paciente

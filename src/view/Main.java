@@ -66,10 +66,16 @@ public class Main {
 						listaPacientes.adicionarNoComeco(paciente); // insere paciente na lista de pacientes
 						pacienteEncontrado = paciente;
 					}
-					atendimento.setPessoa(pacienteEncontrado); // define a pessoa do atendimento
-					atendimento.setHoraChegada(Calendar.getInstance()); // define a hora em que o atendimento começou
-					filaAtendimentos.enqueue(atendimento); // coloca na fila de atendimentos
-					System.out.println("Paciente "+ pacienteEncontrado.getNome()+ " adicionado na fila!"); // retorna qual paciente foi adicinoado a fila
+					if (pacienteEncontrado.isEmAtendimento()) { // verifica se paciente já não está sendo atendido
+						System.out.println("Paciente já se encontra em atendimento!");
+					} else { // caso paciente não esteja sendo atendido
+						listaPacientes.defineAtendimento(pacienteEncontrado.getCpf(), true); // marca flag de que o paciente está em atendimento
+						atendimento.setPessoa(pacienteEncontrado); // define a pessoa do atendimento
+						atendimento.setHoraChegada(Calendar.getInstance()); // define a hora em que o atendimento começou
+						filaAtendimentos.enqueue(atendimento); // coloca na fila de atendimentos
+						System.out.println("Paciente "+ pacienteEncontrado.getNome()+ " adicionado na fila!"); // retorna qual paciente foi adicinoado a fila
+					}
+					
 					break;
 				case "4": // Inicia Triagem do paciente
 					if (filaAtendimentos.isEmpty()) { // verifica se a fila não está vazia
@@ -141,6 +147,7 @@ public class Main {
 					if (liberacao == null) // verifica se paciente não foi encontrado ou já foi liberado
 						System.out.println("Não foi possível liberar o paciente. O mesmo já foi liberado ou não está cadastrado com este CPF no sistema."); // informa o usuário
 					else { // caso tenha encontrado o paciente e liberado
+						listaPacientes.defineAtendimento(pacienteEncontrado.getCpf(), false); // define como paciente que já está liberado e não está em atendimento
 						if(tela.realizaPerguntaSimNao("Gostaria de consultar o parecer antes da liberação?")) { // realiza pergunta se deseja consultar parecer
 							if(liberacao.getParecer() != null) { // se existir parecer
 								System.out.println("Parecer: ");
