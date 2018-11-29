@@ -1,5 +1,3 @@
-
-
 package view;
 
 import java.io.BufferedReader;
@@ -45,7 +43,6 @@ public class Main {
 					}
 					
 					break;
-<<<<<<< Updated upstream
 				case "3":
 					Atendimento atendimento = new Atendimento();
 					String cpf = tela.realizaPerguntaSimples("Digite o CPF do paciente que desejas iniciar o atendimento: (pontuação irá ser desconsiderada) ", "numero");
@@ -62,9 +59,6 @@ public class Main {
 					atendimento.setHoraChegada(Calendar.getInstance());
 					filaAtendimentos.enqueue(atendimento);
 					System.out.println("Paciente "+ pacienteEncontrado.getNome()+ " adicionado na fila!");
-=======
-				case "3":			
->>>>>>> Stashed changes
 					break;
 				case "4":
 					if (filaAtendimentos.isEmpty()) {
