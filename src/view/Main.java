@@ -35,7 +35,11 @@ public class Main {
 				String res = bf.readLine(); // realiza a leitura da resposta do usuário
 				switch (res.toLowerCase()) { // estruturação do menu em um switch case, caso não for nenhuma das opções requeridas ele define como padrão a opção sair como false
 				case "1": // Opção de inserir um paciente
-					listaPacientes.adicionarNoComeco(tela.inserePaciente(null)); // insere o paciente na lista de pacientes
+					Paciente pacienteinserindo = tela.inserePaciente(null); // instacia o paciente que está sendo inserido
+					if (listaPacientes.retornaNodoPacienteCpf(pacienteinserindo.getCpf()) == null) // verifica se já não existe paciente com este cpf
+						listaPacientes.adicionarNoComeco(pacienteinserindo); // insere o paciente na lista de pacientes
+					else
+						System.out.println("Já existe paciente cadastrado com este CPF"); // informa que já existe alguém com esse cpf
 					break;
 				case "2": // opção de procurar um paciente
 					// pergunta ao usuário qual o paciente desejado para a pesquisa através do seu CPF, e realiza a busca no método retornaNodoPacienteCpf
