@@ -16,61 +16,61 @@ public class TadListaPaciente {
 		this.ultimo = null;
 	}
 	/***
-	 * Método para inserir o paciente no final da lista
-	 * @param dado
+	 * Método para inserir o atendimento no final da lista.
+	 * @param dado - Objeto da classe Paciente
 	 */
 	public void adicionarNoFinal(Paciente dado) {
 		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
 		if (primeiro == null) {
-			// lista está vazia
+			// Se lista está vazia o elemento será o primeiro e último
 			primeiro = novoNodoPaciente;
 			ultimo = novoNodoPaciente;
 		} else {
-			ultimo.proximo = novoNodoPaciente;
-			novoNodoPaciente.anterior = ultimo;
-			ultimo = novoNodoPaciente;
+			ultimo.proximo = novoNodoPaciente; //Senão, o último Paciente passa a apontar para o novo elemento
+			novoNodoPaciente.anterior = ultimo; //O novo aponta para o último
+			ultimo = novoNodoPaciente; //E o último é atualizado para o novo elemento adicionado
 		}
 	}
 	/***
-	 * Método para inserir o paciente no início da fila.
-	 * @param dado
+	 * Método para inserir o atendimento no início da lista.
+	 * @param dado - Objeto da classe Paciente
 	 */
 	public void adicionarNoComeco(Paciente dado) {
 		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
 		if (primeiro == null) {
-			// lista está vazia
+			// Se lista está vazia o elemento será o primeiro e último
 			primeiro = novoNodoPaciente;
 			ultimo = novoNodoPaciente;
 		} else {
-			primeiro.anterior = novoNodoPaciente;
-			novoNodoPaciente.proximo = primeiro;
-			primeiro = novoNodoPaciente;
+			primeiro.anterior = novoNodoPaciente;//Senão, o anterior do primeiro paciente passa a apontar para o novo elemento
+			novoNodoPaciente.proximo = primeiro; //O novo aponta para o primeiro
+			primeiro = novoNodoPaciente; //E o primeiro é atualizado para o novo elemento adicionado
 		}
 	}
 	/***
 	 * Método que remove o elemento paciente contido em determinada posição da lista
-	 * @param posicao
+	 * @param posicao a ser removida
 	 */
 	
 	public void removePosicao(int posicao) {
-		NodoPacienteLista remover = retornaNodoPaciente(posicao);
-		if (remover == primeiro) {
+		NodoPacienteLista remover = retornaNodoPaciente(posicao); //Busca qual o nodo está na posição informada
+		if (remover == primeiro) { //Se for o primeiro, atualiza o segundo elemento como novo primeiro
 			primeiro.proximo.anterior = null;
 			primeiro = primeiro.proximo;
-		} else if (remover == ultimo) {
+		} else if (remover == ultimo) { //Se for o último, atualiza o penúltimo como novo último
 			ultimo.anterior.proximo = null;
 			ultimo = ultimo.anterior;
-		} else {
+		} else { //Se não for nem primeiro nem último, o nodo anterior à posição informada aponta para o nodo posterior à posição e vice-versa
 			remover.anterior.proximo = remover.proximo;
 			remover.proximo.anterior = remover.anterior;
 		}
 	}
 	/***
 	 * Método que retorna o elemento paciente contido em determinada posição.
-	 * @param posicao
-	 * @return aux
+	 * @param posicao a ser encontrada
+	 * @return aux - Nodo da lista de pacientes
 	 */
-	public NodoPacienteLista retornaNodoPaciente(int posicao) {
+	public NodoPacienteLista retornaNodoPaciente(int posicao) { //Percorre a lista até chegar na posição anterior à informada
 		NodoPacienteLista aux = primeiro;
 		for (int i = 0; i < posicao; i++) {
 			if (aux != null) {
@@ -83,8 +83,8 @@ public class TadListaPaciente {
 	}
 	/***
 	 * Método que realiza a busca do paciente pelo cpf
-	 * @param dado
-	 * @return nulo caso não exista paciente com o cpf informado.
+	 * @param dado - CPF informado
+	 * @return Paciente
 	 */
 	public Paciente retornaNodoPacienteCpf(String dado) {
 		NodoPacienteLista aux = primeiro;
@@ -106,12 +106,12 @@ public class TadListaPaciente {
 	/***
 	 * Método que busca o elemento da lista que se encontra em uma determinada posição.
 	 * @param posicao
-	 * @return nulo caso não exista paciente com o cpf informado.
+	 * @return Paciente
 	 */
 
 	public Paciente retornaDado(int posicao) {
 		NodoPacienteLista aux = primeiro;
-		for (int i = 0; i < posicao; i++) {
+		for (int i = 0; i < posicao; i++) { //Percorre a lista até o elemento anterior à posição buscada
 			if (aux != null) {
 				aux = aux.proximo;
 			} else {
@@ -125,8 +125,8 @@ public class TadListaPaciente {
 		}
 	}
 	/***
-	 * Método que remove o elemento da lista de pacientes
-	 * @param dado
+	  * Método que remove o elemento da lista de atendimento por ocorrência do CPF
+	  * @param dado - CPF do paciente
 	 */
 	public void removerPorOcorrencia(String dado) {
 		NodoPacienteLista aux = primeiro;
@@ -141,15 +141,8 @@ public class TadListaPaciente {
 					ultimo = ultimo.anterior;
 					break;
 				} else {
-					// forma 1
 					aux.anterior.proximo = aux.proximo;
 					aux.proximo.anterior = aux.anterior;
-
-					// forma 2
-					/*
-					 * NodoPaciente antes = aux.anterior; NodoPaciente depois = aux.proximo;
-					 * antes.proximo = depois; depois.anterior = antes;
-					 */
 					break;
 				}
 			} // fecha o if do caso onde encontrou o dado
@@ -163,8 +156,7 @@ public class TadListaPaciente {
 		} // fecha o while
 	}
 	/**
-	 * Método para impressão da confirmação da inclusão do paciente, caso contrário, informa
-	 * que a lista está vazia.
+	 * Método para impressão dos dados dos pacientes
 	 */
 	public void imprimir() {
 		NodoPacienteLista aux = primeiro;
@@ -186,54 +178,3 @@ public class TadListaPaciente {
 	}
 
 }
-
-/* Não são usados nem pedidos. Remover?
-	public void imprimir2() {
-		NodoPacienteLista aux = primeiro;
-		while (true) {
-			System.out.println(aux.dado);
-			if (aux == ultimo) {
-				break;
-			}
-			aux = aux.proximo;
-		}
-	}
-
-	public void imprimirTrasPraFrente() {
-		NodoPacienteLista aux = ultimo;
-		while (true) {
-			System.out.println(aux.dado);
-			if (aux == primeiro) {
-				break;
-			}
-			aux = aux.anterior;
-		}
-	}
-	
-	public void adicionarNaPosicao(Paciente dado, int posicao) {
-		NodoPacienteLista NodoPacienteNaPosicao = retornaNodoPaciente(posicao);
-		NodoPacienteLista novoNodoPaciente = new NodoPacienteLista(dado);
-		if (primeiro == null) {
-			// lista está vazia
-			primeiro = novoNodoPaciente;
-			ultimo = novoNodoPaciente;
-		} else {
-			if (NodoPacienteNaPosicao == primeiro) {
-				primeiro.anterior = novoNodoPaciente;
-				novoNodoPaciente.proximo = primeiro;
-				primeiro = novoNodoPaciente;
-			} else if (NodoPacienteNaPosicao == ultimo) {
-				ultimo.proximo = novoNodoPaciente;
-				novoNodoPaciente.anterior = ultimo;
-				ultimo = novoNodoPaciente;
-			} else {
-				novoNodoPaciente.proximo = NodoPacienteNaPosicao;
-				novoNodoPaciente.anterior = NodoPacienteNaPosicao.anterior;
-				NodoPacienteNaPosicao.anterior.proximo = novoNodoPaciente;
-				NodoPacienteNaPosicao.anterior = novoNodoPaciente;
-			}
-
-		}
-	}
-}
-*/

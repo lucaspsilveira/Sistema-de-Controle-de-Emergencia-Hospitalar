@@ -23,7 +23,7 @@ public class TadFilaAtendimento {
             inicio = new NodoAtendimentoFila(valor);
         } else {
             NodoAtendimentoFila aux = inicio; 
-            while (aux.apos != null) { //Senão, percorre a lista até o final e adiciona o Atendimento no final da lista
+            while (aux.apos != null) { //Senão, percorre a fila até o final e adiciona o Atendimento no final da fila
                 aux = aux.apos;
             }
             aux.apos = new NodoAtendimentoFila(valor);        

@@ -108,14 +108,14 @@ public class TadListaAtendimento {
 		return null;
 	}
 	/***
-	 * Método que realiza a busca do elemento na lista que se encontra em determinada posição, finaliza 
-	 * a busca se o elemento for encontrado, caso contrário, retorna nulo.
+	 * Método que realiza a busca do elemento na lista que se encontra em determinada posição.
 	 * @param posicao
+	 * @return Atendimento
 	 */
 	
 	public Atendimento retornaDado(int posicao) {
 		NodoAtendimentoLista aux = primeiro;
-		for (int i = 0; i < posicao; i++) {
+		for (int i = 0; i < posicao; i++) { //Percorre a lista até o elemento anterior à posição buscada
 			if (aux != null) {
 				aux = aux.proximo;
 			} else {
@@ -292,8 +292,8 @@ public class TadListaAtendimento {
 	 
 	 
 	 /***
-	  * Método que remove o elemento da lista de atendimento
-	  * @param dado
+	  * Método que remove o elemento da lista de atendimento por ocorrência do CPF
+	  * @param dado - CPF do paciente
 	  */
 	public void removerPorOcorrencia(String dado) {
 		NodoAtendimentoLista aux = primeiro;
