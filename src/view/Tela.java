@@ -32,10 +32,6 @@ public class Tela {
 		return paciente;
 	}
 
-	public Atendimento insereAtendimento() {
-		return null;
-	}
-
 	public Atendimento realizaTriagem(Atendimento atendimento) {
 		System.out.println("Paciente " + atendimento.getPessoa().getNome() + " chamado para triagem.");
 		atendimento.setTemperatura(Double.parseDouble(realizaPerguntaSimples("Qual a temperatura do paciente?", "numero")));
