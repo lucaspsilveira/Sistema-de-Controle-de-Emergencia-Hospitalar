@@ -20,62 +20,62 @@ public class TadListaAtendimento {
 	
 	/***
 	 * Método para inserir o atendimento no final da lista.
-	 * @param dado
+	 * @param dado - Objeto da classe Atendimento
 	 */
 	public void adicionarNoFinal(Atendimento dado) {
 		NodoAtendimentoLista novoNodoAtendimento = new NodoAtendimentoLista(dado);
 		if (primeiro == null) {
-			// lista está vazia
+			// Se lista está vazia o elemento será o primeiro e último
 			primeiro = novoNodoAtendimento;
 			ultimo = novoNodoAtendimento;
-		} else {
-			ultimo.proximo = novoNodoAtendimento;
-			novoNodoAtendimento.anterior = ultimo;
-			ultimo = novoNodoAtendimento;
+		} else { 
+			ultimo.proximo = novoNodoAtendimento; //Senão, o último atendimento passa a apontar para o novo elemento
+			novoNodoAtendimento.anterior = ultimo; //O novo aponta para o último
+			ultimo = novoNodoAtendimento; //E o último é atualizado para o novo elemento adicionado
 		}
 	}
 	/***
-	 * Método para inserir o atendimento no início da fila.
-	 * @param dado
+	 * Método para inserir o atendimento no início da lista.
+	 * @param dado - Objeto da classe Atendimento
 	 */
 	
 	public void adicionarNoComeco(Atendimento dado) {
 		NodoAtendimentoLista novoNodoAtendimento = new NodoAtendimentoLista(dado);
 		if (primeiro == null) {
-			// lista está vazia
+			// Se lista está vazia o elemento será o primeiro e último
 			primeiro = novoNodoAtendimento;
 			ultimo = novoNodoAtendimento;
 		} else {
-			primeiro.anterior = novoNodoAtendimento;
-			novoNodoAtendimento.proximo = primeiro;
-			primeiro = novoNodoAtendimento;
+			primeiro.anterior = novoNodoAtendimento; //Senão, o anterior do primeiro atendimento passa a apontar para o novo elemento
+			novoNodoAtendimento.proximo = primeiro; //O novo aponta para o primeiro
+			primeiro = novoNodoAtendimento; //E o primeiro é atualizado para o novo elemento adicionado
 		}
 	}
 	/***
 	 * Método que remove o elemento atendimento contido em determinada posição da lista.
-	 * @param posicao
+	 * @param posicao a ser removida
 	 */
 	public void removePosicao(int posicao) {
-		NodoAtendimentoLista remover = retornaNodoAtendimento(posicao);
-		if (remover == primeiro) {
+		NodoAtendimentoLista remover = retornaNodoAtendimento(posicao); //Busca qual o nodo está na posição informada
+		if (remover == primeiro) { //Se for o primeiro, atualiza o segundo elemento como novo primeiro
 			primeiro.proximo.anterior = null;
 			primeiro = primeiro.proximo;
-		} else if (remover == ultimo) {
+		} else if (remover == ultimo) { //Se for o último, atualiza o penúltimo como novo último
 			ultimo.anterior.proximo = null;
 			ultimo = ultimo.anterior;
-		} else {
+		} else { //Se não for nem primeiro nem último, o nodo anterior à posição informada aponta para o nodo posterior à posição e vice-versa
 			remover.anterior.proximo = remover.proximo;
 			remover.proximo.anterior = remover.anterior;
 		}
 	}
 	/***
 	 * Método que retorna o elemento atendimento contido em determinada posição.
-	 * @param posicao
-	 * @return aux
+	 * @param posicao a ser encontrada
+	 * @return aux - Nodo da lista de atendimentos
 	 */
 	public NodoAtendimentoLista retornaNodoAtendimento(int posicao) {
 		NodoAtendimentoLista aux = primeiro;
-		for (int i = 0; i < posicao; i++) {
+		for (int i = 0; i < posicao; i++) { //Percorre a lista até chegar na posição anterior à informada
 			if (aux != null) {
 				aux = aux.proximo;
 			} else {
@@ -87,8 +87,8 @@ public class TadListaAtendimento {
 	
 	/***
 	 * Método que realiza a busca do paciente pelo cpf
-	 * @param dado
-	 * @return nulo caso não exista paciente com o cpf informado
+	 * @param dado - CPF informado
+	 * @return Atendimento do paciente com o CPF informado
 	 */
 	public Atendimento retornaNodoAtendimentoCpf(String dado) {
 		NodoAtendimentoLista aux = primeiro;
@@ -131,14 +131,15 @@ public class TadListaAtendimento {
 	/***
 	 * Método que finaliza o atendimento e libera o paciente, pesquisa o registro na lista de atendimentos
 	 * e registra a hora da saída do paciente
-	 * @param dado
+	 * @param dado - CPF do paciente a ser liberado
+	 * @return Atendimento
 	 */
 	public Atendimento liberarPacienteAtendimento(String dado) {
 		NodoAtendimentoLista aux = primeiro;
-		while (aux!=null) {
+		while (aux!=null) { //Percorre a lista até encontrar um paciente cujo CPF seja igual ao informado
 			if (aux.dado.getPessoa().getCpf().equalsIgnoreCase(dado)) {
 				if (aux.dado.getHoraSaida() == null)
-					aux.dado.setHoraSaida(Calendar.getInstance());
+					aux.dado.setHoraSaida(Calendar.getInstance()); //Registra a hora de saída com a hora atual
 				else
 					return null;
 				return aux.dado;
@@ -174,11 +175,11 @@ public class TadListaAtendimento {
 	  * @return tempo entre a chegada do paciente e a chamada para atendimento.
 	  */
 	 
-	 public long calculaMediaChegadaAtendimento() {// percorre todos os atendimentos e soma a diferença de horas
+	 public long calculaMediaChegadaAtendimento() {
 		 NodoAtendimentoLista aux = primeiro;
 		 long somatorio = 0;
 		 int cont = 0;
-			while (aux!=null) {
+			while (aux!=null) { // percorre todos os atendimentos e soma a diferença de horas
 				if (aux.dado.getHoraAtendimento() != null && aux.dado.getHoraChegada() != null) {
 					somatorio += aux.dado.getDiffHorasChegadaAtendimento();
 					cont++;
@@ -191,8 +192,8 @@ public class TadListaAtendimento {
 				}
 			}
 			try { //trata as exceções
-				return somatorio / this.size();
-			} catch (ArithmeticException e) { // Fornece informações para correção do erro
+				return somatorio / cont; // divide o total pelo número de atendimentos
+			} catch (ArithmeticException e) { // Se o tamanho da lista for 0 vai lançar execeção, retorna média como 0
 				return 0;
 			}
 	 }
@@ -200,11 +201,11 @@ public class TadListaAtendimento {
 	  * Método para calcular o tempo médio de atendimento
 	  * @return tempo entre a chamada para atendimento e a saída do paciente
 	  */
-	 public long calculaMediaAtendimentoSaida() { // percorre todos os atendimentos e soma a diferença de horas
+	 public long calculaMediaAtendimentoSaida() { 
 		 NodoAtendimentoLista aux = primeiro;
 		 long somatorio = 0;
 		 int cont = 0;
-			while (aux!=null) {
+			while (aux!=null) { // percorre todos os atendimentos e soma a diferença de horas
 				if (aux.dado.getHoraAtendimento() != null && aux.dado.getHoraSaida() != null) {
 					somatorio += aux.dado.getDiffHorasAtendimentoSaida();
 					cont++;
@@ -217,14 +218,14 @@ public class TadListaAtendimento {
 				}
 			}
 			
-			try { // Método para tratar exceções
-				return somatorio / cont;
-			} catch (ArithmeticException e) { //Fornece informações para correção do erro
+			try {
+				return somatorio / cont; // divide o total pelo número de atendimentos
+			} catch (ArithmeticException e) { // Se o tamanho da lista for 0 vai lançar execeção, retorna média como 0
 				return 0;			
 			}
 	 }
 	 /***
-	  * Método para calcular o tempo médio de atendimento
+	  * Método para calcular o tempo médio de atendimento em cada fila.
 	  * @return tempo entre a chegada e a saída de cada fila.
 	  */
 	  
@@ -241,7 +242,7 @@ public class TadListaAtendimento {
 		 int contFila4 = 0;
 		 int contFila5 = 0;
 		 
-			while (aux!=null) {
+			while (aux!=null) {  // percorre todos os atendimentos, checa qual a fila de prioridade e soma a diferença de horas
 				if (aux.dado.getHoraChegada() != null && aux.dado.getHoraSaida() != null) {
 					switch (aux.dado.getPrioridade()) { // swicth case pra somar em cada prioridade
 						case 1:
@@ -273,7 +274,7 @@ public class TadListaAtendimento {
 					aux = aux.proximo;
 				}
 			}
-			// realiza verificação se está 0, para não ocorrer divisão por 0 na divisão na mensagem de retorno
+			// realiza verificação se está 0, para não ocorrer divisão por 0
 			if (contFila1 == 0)
 				contFila1 = 1;
 			if (contFila2 == 0)
@@ -284,6 +285,7 @@ public class TadListaAtendimento {
 				contFila4 = 1;
 			if (contFila5 == 0)
 				contFila5 = 1;
+			//Calcula as médias
 			long vetorSomatorios[] = {(somatorioFila1 / contFila1),(somatorioFila2 / contFila2), (somatorioFila3 / contFila3), (somatorioFila4 / contFila4), (somatorioFila5 / contFila5)};
 			return vetorSomatorios;
 	 }
@@ -306,15 +308,8 @@ public class TadListaAtendimento {
 					ultimo = ultimo.anterior;
 					break;
 				} else {
-					// forma 1
 					aux.anterior.proximo = aux.proximo;
 					aux.proximo.anterior = aux.anterior;
-
-					// forma 2
-					/*
-					 * NodoPaciente antes = aux.anterior; NodoPaciente depois = aux.proximo;
-					 * antes.proximo = depois; depois.anterior = antes;
-					 */
 					break;
 				}
 			} // fecha o if do caso onde encontrou o dado
@@ -327,9 +322,9 @@ public class TadListaAtendimento {
 			}
 		} // fecha o while
 	}
+	
 	/**
-	 * Método para impressão dos relatórios administrativos se tiver dados, caso contrário, informa
-	 * que a lista está vazia.
+	 * Método para impressão dos dados dos atendimentos
 	 */
 	public void imprimir() {
 		NodoAtendimentoLista aux = primeiro;
@@ -356,54 +351,4 @@ public class TadListaAtendimento {
 		
 	}
 }
-
-/* Não são usados nem pedidos. Remover?
-	public void imprimir2() {
-		NodoAtendimentoLista aux = primeiro;
-		while (true) {
-			System.out.println(aux.dado);
-			if (aux == ultimo) {
-				break;
-			}
-			aux = aux.proximo;
-		}
-	}
-
-	public void imprimirTrasPraFrente() {
-		NodoAtendimentoLista aux = ultimo;
-		while (true) {
-			System.out.println(aux.dado);
-			if (aux == primeiro) {
-				break;
-			}
-			aux = aux.anterior;
-		}
-	}
-	
-	public void adicionarNaPosicao(Atendimento dado, int posicao) {
-		NodoAtendimentoLista NodoAtendimentoNaPosicao = retornaNodoAtendimento(posicao);
-		NodoAtendimentoLista novoNodoAtendimento = new NodoAtendimentoLista(dado);
-		if (primeiro == null) {
-			// lista est� vazia
-			primeiro = novoNodoAtendimento;
-			ultimo = novoNodoAtendimento;
-		} else {
-			if (NodoAtendimentoNaPosicao == primeiro) {
-				primeiro.anterior = novoNodoAtendimento;
-				novoNodoAtendimento.proximo = primeiro;
-				primeiro = novoNodoAtendimento;
-			} else if (NodoAtendimentoNaPosicao == ultimo) {
-				ultimo.proximo = novoNodoAtendimento;
-				novoNodoAtendimento.anterior = ultimo;
-				ultimo = novoNodoAtendimento;
-			} else {
-				novoNodoAtendimento.proximo = NodoAtendimentoNaPosicao;
-				novoNodoAtendimento.anterior = NodoAtendimentoNaPosicao.anterior;
-				NodoAtendimentoNaPosicao.anterior.proximo = novoNodoAtendimento;
-				NodoAtendimentoNaPosicao.anterior = novoNodoAtendimento;
-			}
-
-		}
-	}
-}*/
 
