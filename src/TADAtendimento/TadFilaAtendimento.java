@@ -16,77 +16,81 @@ public class TadFilaAtendimento {
     
     /***
      * Método que insere o elemento atendimento no final da fila
-     * @param valor
+     * @param valor - Objeto da Classe Atendimento
      */
     public void enqueue(Atendimento valor){
-        if (inicio == null){
+        if (inicio == null){	//Se é o primeiro, então início aponta para o novo Atendimento
             inicio = new NodoAtendimentoFila(valor);
         } else {
-            NodoAtendimentoFila aux = inicio;
-            while (aux.apos != null) {
+            NodoAtendimentoFila aux = inicio; 
+            while (aux.apos != null) { //Senão, percorre a lista até o final e adiciona o Atendimento no final da lista
                 aux = aux.apos;
             }
             aux.apos = new NodoAtendimentoFila(valor);        
         }
     }
     /***
-     * Método que remove e retorna o elemento atendimento do início da fila e dá erro se a fila estiver vazia
-     * @return nulo
+     * Método que remove e retorna o elemento atendimento do início da fila
+     * @return primeiro Atendimento da fila
      */
     public Atendimento dequeue(){
-        if (isEmpty()){ 
+        if (isEmpty()){ 	//Se a fila está vazia retorna null
             return null;
-        } else {
+        } else {			//Senão retorna o inicio (primeiro Atendimento) e aponta define o próximo como novo início da fila
             Atendimento dado = inicio.dado;
             inicio = inicio.apos;
             return dado;         
         }
     }
    /**
-    * Método que retorna, mas não remove, o primeiro elemento da fila, e dá erro se a fila estiver vazia
-    *
+    * Método que retorna, mas não remove, o primeiro elemento da fila
+    *@return primeiro Atendimento da fila
     */
     public Atendimento head(){
-        return inicio.dado;
+        return inicio.dado; 
     }
     
     /**
-     * Método que informa a quantidade de atendimentos na fila, enquanto não for nulo, acresce o atendimento
-     * ao contador e  retorna o número de elementos da fila.
+     * Método que informa a quantidade de atendimentos na fila
+     * @return número de elementos na fila
      */
     public int size() {
         NodoAtendimentoFila no = inicio;
         int cont = 0;
-        while (no != null) {
+        while (no != null) { //enquanto não chegar ao fim da fila, acresce o uma unidade de atendimento ao contador 
             cont++;
             no = no.apos;
         }
         return cont;
     }
     
-    // retorna true se a fila estiver vazia, e false caso contrário
-     
+    
+    /**
+     * Retorna se a fila está vazia
+     * @return boolean - estado da fila vazia (true ou false)
+     */
     public boolean isEmpty(){
-       return inicio == null;
+       return inicio == null; // retorna true se a fila estiver vazia, e false caso contrário
     }
     
-    // esvazia a fila
     
+    /**
+     * Esvazia a fila
+     */
     public void clear(){
         while (!isEmpty()){
-            dequeue();
+            dequeue(); // esvazia a fila (enquanto não estiver vazia, remove os elementos)
         }
     }
     /**
-     * Imprime informações se a fila estiver vazia ou, caso contrário, as informações do paciente para
-     * atendimento.
+     * Imprime informações dos pacientes na fila
      */
     public void imprimir(){
         if (isEmpty()) {
             System.out.println("Fila Vazia");
         }
-        NodoAtendimentoFila no = inicio;
-        while (no != null){
+        NodoAtendimentoFila no = inicio; 
+        while (no != null){ //Imprime as informações de cada elemento (Atendimento) da fila
             System.out.println("Paciente: " + no.dado.getPessoa().getNome());
             System.out.println("Prioridade: " + no.dado.getPrioridade());
             System.out.println("Data/hora chegada: " + no.dado.getHoraChegada().getTime());

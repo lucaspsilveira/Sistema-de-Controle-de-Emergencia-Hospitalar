@@ -8,7 +8,7 @@ public class NodoAtendimentoLista {
     protected NodoAtendimentoLista anterior;  
     /***
      * 
-     * @param dado
+     * @param dado - Objeto da classe Atendimento
      */
 
 	public NodoAtendimentoLista(Atendimento dado){
@@ -18,24 +18,5 @@ public class NodoAtendimentoLista {
     }
 	
 	//Protected, então não precisa de getters e setters
-	/*
-	public Atendimento getDado() {
-		return dado;
-	}
-	public void setDado(Atendimento dado) {
-		this.dado = dado;
-	}
-	public NodoAtendimentoLista getProximo() {
-		return proximo;
-	}
-	public void setProximo(NodoAtendimentoLista proximo) {
-		this.proximo = proximo;
-	}
-	public NodoAtendimentoLista getAnterior() {
-		return anterior;
-	}
-	public void setAnterior(NodoAtendimentoLista anterior) {
-		this.anterior = anterior;
-	}    */
 }
 

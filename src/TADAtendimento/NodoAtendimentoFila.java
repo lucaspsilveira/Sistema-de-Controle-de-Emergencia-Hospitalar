@@ -7,7 +7,7 @@ public class NodoAtendimentoFila {
     
     /***
      * 
-     * @param dado
+     * @param dado - Objeto da classe Atendimento
      */
     
     public NodoAtendimentoFila(Atendimento dado){
@@ -15,21 +15,7 @@ public class NodoAtendimentoFila {
         this.apos = null;
     }
     
-    /* Protected, então não precisa de getters e setters 
-	public Atendimento getDado() {
-		return dado;
-	}
-
-	public void setDado(Atendimento dado) {
-		this.dado = dado;
-	}
-
-	public NodoAtendimentoFila getApos() {
-		return apos;
-	}
-
-	public void setApos(NodoAtendimentoFila apos) {
-		this.apos = apos;
-	} */
+    //Protected, então não precisa de getters e setters
+    
 }
 
