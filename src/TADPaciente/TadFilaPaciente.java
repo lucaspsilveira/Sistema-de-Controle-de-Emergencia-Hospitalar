@@ -14,28 +14,28 @@ public class TadFilaPaciente {
         this.inicio = null;
     }
     /***
-     * Método que insere o elemento paciente no final da fila
-     * @param valor
+     * Método que insere o elemento atendimento no final da fila
+     * @param valor - Objeto da Classe Paciente
      */
     public void enqueue(Paciente valor){
-        if (inicio == null){
+        if (inicio == null){ //Se é o primeiro, então início aponta para o novo Paciente
             inicio = new NodoPacienteFila(valor);
         } else {
             NodoPacienteFila aux = inicio;
-            while (aux.apos != null) {
+            while (aux.apos != null) { //Senão, percorre a fila até o final e adiciona o Paciente no final da fila
                 aux = aux.apos;
             }
             aux.apos = new NodoPacienteFila(valor);        
         }
     }
     /***
-     * Método que remove e retorna o elemento paciente do início da fila, e dá erro se a fila estiver vazia
-     * @return dado ou nulo
+     * Método que remove e retorna o elemento do início da fila
+     * @return primeiro Paciente da fila
      */
     public Paciente dequeue(){
-        if (isEmpty()){
+        if (isEmpty()){ //Se a fila está vazia retorna null
             return null;
-        } else {
+        } else {//Senão retorna o inicio (primeiro Paciente) e aponta define o próximo como novo início da fila
             Paciente dado = inicio.dado;
             inicio = inicio.apos;
             return dado;         
@@ -43,39 +43,43 @@ public class TadFilaPaciente {
     }
     /**
      * Método que retorna, mas não remove, o primeiro elemento da fila
+     * @return primeiro Paciente da fila
      */
     public Paciente head(){
         return inicio.dado;
     }
     
     /**
-     * Método que retorna o número de elementos da fila, enquanto não nulo
+     * Método que informa a quantidade de Pacientes na fila
+     * @return número de elementos na fila
      */
     public int size() {
         NodoPacienteFila no = inicio;
         int cont = 0;
-        while (no != null) {
+        while (no != null) { //enquanto não chegar ao fim da fila, acresce o uma unidade de atendimento ao contador 
             cont++;
             no = no.apos;
         }
         return cont;
     }
+
     /**
-     * retorna true se a fila estiver vazia, e false caso contrário
+     * Retorna se a fila está vazia
+     * @return boolean - estado da fila vazia (true ou false)
      */
     public boolean isEmpty(){
-       return inicio == null;
+       return inicio == null; // retorna true se a fila estiver vazia, e false caso contrário
     }
     /**
      * Método para esvaziar a lista
      */
     public void clear(){
         while (!isEmpty()){
-            dequeue();
+            dequeue(); // esvazia a fila (enquanto não estiver vazia, remove os elementos)
         }
     }
     /**
-     * Método que informa se a Lista está vazia ou próximo paciente, se for o caso.
+     * Imprime informações dos pacientes na fila
      */
     public void imprimir(){
         if (isEmpty()) {
