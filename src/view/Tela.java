@@ -3,6 +3,7 @@ package view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Calendar;
 
 import model.Atendimento;
 import model.Paciente;
@@ -45,6 +46,7 @@ public class Tela {
 	 * @return Atendimento atendimento
 	 */
 	public Atendimento realizaTriagem(Atendimento atendimento) { // recebe o atendimento que irá ser alterado como parâmetro
+		atendimento.setHoraAtendimento(Calendar.getInstance()); // aramazena a hora em que iniciou o atendimento
 		System.out.println("Paciente " + atendimento.getPessoa().getNome() + " chamado para triagem."); // retorna para o usuário qual paciente foi chamado para a triagem
 		atendimento.setTemperatura(Double.parseDouble(realizaPerguntaSimples("Qual a temperatura do paciente?", "numero"))); // preenche com temperatura informado pelo usuário, que é retornado pela função realizaPerguntaSimples
 		boolean entubado = realizaPerguntaSimNao("Paciente encontra-se entubado/apenético? Está sem pulso/sem reação? (Sim ou não)");// preenche com verdadeiro ou falso informado pelo usuário, que é retornado pela função realizaPerguntaSimNao
