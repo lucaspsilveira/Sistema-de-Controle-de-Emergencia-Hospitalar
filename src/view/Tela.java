@@ -163,6 +163,7 @@ public class Tela {
 						if (!resposta.equals("")) // se após remover todos os caractéres, isso não seja uma string vazia, retorna a resposta
 							return resposta; // retorna o método com a resposta
 					case "texto": // caso o solicitado seja um texto
+						resposta = resposta.replaceAll("[^a-zA-Z]", ""); //retira caracteres que não sejam letras
 						if (!resposta.trim().equals("")) // retira todos os espaços iniciais e finais, e caso isso não seja uma string vazia retorna a resposta
 							return resposta; // retorna o me´todo com a resposta
 					default: passou = false; // define como falso para perguntar novamente e ralizar outra leitura da resposta do usuário
